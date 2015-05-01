@@ -1,3 +1,12 @@
+<?php
+require_once('includes/config.inc.php');
+
+/* Get all movie from database */
+$link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
+mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
+$query = "SELECT * FROM movie";
+$result = mysqli_query($link, $query) or die("Data not found");
+?>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -5,12 +14,9 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
-
-
-
 <!DOCTYPE HTML>
 <head>
-    <title>Free Movies Store Website Template | Home :: w3layouts</title>
+    <title>Movie Warehouse</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -24,6 +30,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $('#slider').nivoSlider();
         });
     </script>
+    <script>
+        function getMovieCatalogue(val) {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {  // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("movie-panel").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "includes/selectCatalogue.php?cat=" + val, true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 <body>
     <div class="header">
@@ -31,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="nav_list">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
@@ -99,13 +122,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="categories">
                         <ul>
                             <h3>Categories</h3>
-                            <li><a href="#">All</a></li>
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Animation</a></li>
-                            <li><a href="#">Drama</a></li>
+                            <li><a href="index.php">All</a></li>
+                            <li><a onclick="getMovieCatalogue(1)">Action</a></li>
+                            <li><a onclick="getMovieCatalogue(2)">Drama</a></li>
+                            <li><a onclick="getMovieCatalogue(3)">Animation</a></li>
                         </ul>
                     </div>					
                 </div>
+
                 <div class="header_bottom_right">					 
                     <!------ Slider ------------>
                     <div class="slider">
@@ -128,156 +152,110 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!------------End Header ------------>
     <div class="main">
         <div class="wrap">
-            <div class="content">
+            <div id="movie-panel" class="content">
                 <div class="content_top">
                     <div class="heading">
-                        <h3>New Products</h3>
+                        <h3>All Movies</h3>
                     </div>
                 </div>
                 <div class="section group">
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/end-game.jpg" alt="" /></a>
-                        <h2><a href="preview.html">End Game</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$620.87</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>					 
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/Sorority_Wars.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Sorority Wars</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$620.87</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
+                    <?php
+                    $count = 0;
+                    while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                        <div class="grid_1_of_5 images_1_of_5" <?php if ($count % 5 == 0) { ?> style="margin-left: 0px" <?php } ?>>
+                            <a href="preview.php?mid=<?php echo $row['mid']; ?>"><img src="<?php echo $row['picture']; ?>" alt="" /></a>
+                            <h2><a href="preview.php?mid=<?php echo $row['mid']; ?>"><?php echo $row['title']; ?></a></h2>
+                            <div class="price-details">
+                                <div class="price-number">
+                                    <p><span class="rupees"><?php echo "$" . $row['price']; ?></span></p>
+                                </div>
+                                <div class="add-cart">								
+                                    <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Add to Cart</a></h4>
+                                </div>
+                                <div class="clear"></div>
+                            </div>					 
                         </div>
-
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/New-Moon.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Twilight New Moon</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$899.75</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/avatar_movie.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Avatar</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$599.00</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/black-swan.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Black Swan</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$679.87</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>				     
-                    </div>
+                        <?php
+                        $count++;
+                    }
+                    ?>
                 </div>
-                <div class="content_bottom">
-                    <div class="heading">
-                        <h3>Feature Products</h3>
-                    </div>
-                </div>
-                <div class="section group">
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/beauty_and_the_beast.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Beauty and the beast</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$620.87</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/Eclipse.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Eclipse</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$620.87</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/Coraline.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Coraline</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$899.75</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/Unstoppable.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Unstoppable</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$599.00</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="grid_1_of_5 images_1_of_5">
-                        <a href="preview.html"><img src="web/images/cover_pic/Priest.jpg" alt="" /></a>
-                        <h2><a href="preview.html">Priest 3D</a></h2>
-                        <div class="price-details">
-                            <div class="price-number">
-                                <p><span class="rupees">$679.87</span></p>
-                            </div>
-                            <div class="add-cart">								
-                                <h4><a href="preview.html">Add to Cart</a></h4>
-                            </div>
-                            <div class="clear"></div>
-                        </div>				     
-                    </div>
-                </div>
+                <!--                <div class="content_bottom">
+                                    <div class="heading">
+                                        <h3>Feature Products</h3>
+                                    </div>
+                                </div>
+                                <div class="section group">
+                                    <div class="grid_1_of_5 images_1_of_5">
+                                        <a href="preview.html"><img src="web/images/cover_pic/beauty_and_the_beast.jpg" alt="" /></a>
+                                        <h2><a href="preview.html">Beauty and the beast</a></h2>
+                                        <div class="price-details">
+                                            <div class="price-number">
+                                                <p><span class="rupees">$620.87</span></p>
+                                            </div>
+                                            <div class="add-cart">								
+                                                <h4><a href="preview.html">Add to Cart</a></h4>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                
+                                    </div>
+                                    <div class="grid_1_of_5 images_1_of_5">
+                                        <a href="preview.html"><img src="web/images/cover_pic/Eclipse.jpg" alt="" /></a>
+                                        <h2><a href="preview.html">Eclipse</a></h2>
+                                        <div class="price-details">
+                                            <div class="price-number">
+                                                <p><span class="rupees">$620.87</span></p>
+                                            </div>
+                                            <div class="add-cart">								
+                                                <h4><a href="preview.html">Add to Cart</a></h4>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                
+                                    </div>
+                                    <div class="grid_1_of_5 images_1_of_5">
+                                        <a href="preview.html"><img src="web/images/cover_pic/Coraline.jpg" alt="" /></a>
+                                        <h2><a href="preview.html">Coraline</a></h2>
+                                        <div class="price-details">
+                                            <div class="price-number">
+                                                <p><span class="rupees">$899.75</span></p>
+                                            </div>
+                                            <div class="add-cart">								
+                                                <h4><a href="preview.html">Add to Cart</a></h4>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                
+                                    </div>
+                                    <div class="grid_1_of_5 images_1_of_5">
+                                        <a href="preview.html"><img src="web/images/cover_pic/Unstoppable.jpg" alt="" /></a>
+                                        <h2><a href="preview.html">Unstoppable</a></h2>
+                                        <div class="price-details">
+                                            <div class="price-number">
+                                                <p><span class="rupees">$599.00</span></p>
+                                            </div>
+                                            <div class="add-cart">								
+                                                <h4><a href="preview.html">Add to Cart</a></h4>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_1_of_5 images_1_of_5">
+                                        <a href="preview.html"><img src="web/images/cover_pic/Priest.jpg" alt="" /></a>
+                                        <h2><a href="preview.html">Priest 3D</a></h2>
+                                        <div class="price-details">
+                                            <div class="price-number">
+                                                <p><span class="rupees">$679.87</span></p>
+                                            </div>
+                                            <div class="add-cart">								
+                                                <h4><a href="preview.html">Add to Cart</a></h4>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>				     
+                                    </div>
+                                </div>-->
             </div>
         </div>
     </div>
@@ -346,4 +324,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 </body>
 </html>
+
 
