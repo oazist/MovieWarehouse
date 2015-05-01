@@ -24,16 +24,16 @@ while ($rowMovie = mysqli_fetch_array($resultMovie)) {
     if($count%5 == 0){
         $response.="style='margin-left:0px'>";
     }else{
-        ">";
+        $response.=">";
     }
     $response .= "<a href='preview.php?mid=".$rowMovie['mid']."'><img src='".$rowMovie['picture']."'></img></a>";
-    $response .= "<h2><a href='preview.php?mid='".$rowMovie['mid'].">".$rowMovie['title']."</a></h2>";
+    $response .= "<h2><a href='preview.php?mid='".$rowMovie['mid']."'>".$rowMovie['title']."</a></h2>";
     $response .= "<div class='price-details'>";
     $response .= "<div class='price-number'>";
     $response .= "<p><span class='rupees'>$".$rowMovie['price']."</span></p>";
     $response .= "</div>";
     $response .= "<div class='add-cart'>";
-    $response .= "<h4><a href='preview.php?mid='".$rowMovie['mid'].">Preview</a></h4>";
+    $response .= "<h4><a href='preview.php?mid=".$rowMovie['mid']."'>Preview</a></h4>";
     $response .= "</div>";
     $response .= "<div class='clear'></div>";
     $response .= "</div>";

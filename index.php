@@ -171,7 +171,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <p><span class="rupees"><?php echo "$" . $row['price']; ?></span></p>
                                 </div>
                                 <div class="add-cart">								
-                                    <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Add to Cart</a></h4>
+                                    <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h4>
                                 </div>
                                 <div class="clear"></div>
                             </div>					 
@@ -179,6 +179,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <?php
                         $count++;
                     }
+                    
+                    mysqli_close($link);
                     ?>
                 </div>
                 <!--                <div class="content_bottom">
