@@ -1,27 +1,12 @@
-<?php
-require_once('includes/config.inc.php');
-
-$mid = $_GET['mid'];
-
-$link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
-mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
-
-/* Fetch Movie From Database */
-$queryMovie = "SELECT * FROM movie WHERE mid='" . $mid . "'";
-$resultMovie = mysqli_query($link, $queryMovie) or die("Movie not found");
-$rowMovie = mysqli_fetch_array($resultMovie);
-
-/* Fetch catagory that related to the movie */
-$queryCat = "SELECT catalogue_name FROM catalogue WHERE cid=" . $rowMovie['cid'];
-$resultCat = mysqli_query($link, $queryCat) or die("Catagory not found");
-$rowCat = mysqli_fetch_array($resultCat);
-
-/* Fetch other movies */
-$queryOther = "SELECT * FROM movie WHERE mid!='" . $mid . "' && cid=" . $rowMovie['cid'] . " LIMIT 5";
-$resultOther = mysqli_query($link, $queryOther);
-?>
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
 <head>
-    <title>Movie Warehouse</title>
+    <title>Free Movies Store Website Template | Contact :: w3layouts</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -29,7 +14,35 @@ $resultOther = mysqli_query($link, $queryOther);
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
-
+    <script type="text/javascript">
+        simpleCart({
+            // array representing the format and columns of the cart,
+            // see the cart columns documentation
+            cartColumns: [
+                {attr: "name", label: "Name"},
+                {view: "currency", attr: "price", label: "Price"},
+                {view: "decrement", label: false},
+                {attr: "quantity", label: "Quantity"},
+                {view: "increment", label: false},
+                {view: "currency", attr: "total", label: "SubTotal"},
+                {view: "remove", text: "Remove", label: false}
+            ],
+            // "div" or "table" - builds the cart as a 
+            // table or collection of divs
+            cartStyle: "table",
+            // how simpleCart should checkout, see the 
+            // checkout reference for more info 
+            checkout: {
+                type: "PayPal",
+                email: "you@yours.com"
+            },
+            // set the currency, see the currency 
+            // reference for more info
+            currency: "USD",
+            // collection of arbitrary data you may want to store 
+            // with the cart, such as customer info
+        });
+    </script>
 </head>
 <body>
     <div class="header">
@@ -38,12 +51,15 @@ $resultOther = mysqli_query($link, $queryOther);
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
+                        <li><a href="contact.html">Sitemap</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
                     <ul>
                         <li><a href="contact.html">Register</a></li>
                         <li><a href="contact.html">Login</a></li>
+                        <li><a href="preview.html">Delivery</a></li>
                         <li><a href="#">Checkout</a></li>
                         <li><a href="#">My Account</a></li>
                     </ul>
@@ -57,16 +73,19 @@ $resultOther = mysqli_query($link, $queryOther);
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
-                    <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
-                    <a href="viewcart.php" class="viewcart">Viewcart</a>
-                    <!--                    <div class="search_box">
-                                            <form>
-                                                <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                            this.value = 'Search';
-                                                        }"><input type="submit" value="">
-                                            </form>
-                                        </div>-->
+                    <div class="cart">
+                        <p><span>Cart</span><div id="dd" class="wrapper-dropdown-2"> (empty)
+                            <ul class="dropdown">
+                                <li>you have no items in your Shopping cart</li>
+                            </ul></div></p>
+                    </div>
+                    <div class="search_box">
+                        <form>
+                            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = 'Search';
+                                    }"><input type="submit" value="">
+                        </form>
+                    </div>
                     <div class="clear"></div>
                 </div>
                 <script type="text/javascript">
@@ -102,74 +121,24 @@ $resultOther = mysqli_query($link, $queryOther);
     </div>
     <div class="main">
         <div class="wrap">
-            <div class="content_top">
-                <div class="back-links">
-                    <p><a href="index.php">Home</a> &gt;&gt; <a href="#" class="active">English</a></p>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="section group">
-                <div class="cont-desc span_1_of_2">
-                    <div class="simpleCart_shelfItem">
-                        <div class="product-details">				
-                            <div class="grid images_3_of_2">
-                                <img src="<?php echo $rowMovie['coverpic']; ?>" alt="" />
-                            </div>
-                            <div class="desc span_3_of_2">
-                                <h2 class="item_name"><?php echo $rowMovie['title']; ?></h2>
-                                <p></p>					
-                                <div class="price">
-                                    <p>Price: <span class="item_price">$<?php echo $rowMovie['price']; ?></span></p>
-                                </div>
-                                <div class="available">
-                                    <ul>
-                                        <li><span>Movie ID:</span> &nbsp; <?php echo $rowMovie['mid']; ?></li>
-                                        <li><span>Category:</span>&nbsp; <?php echo $rowCat['catalogue_name'] ?></li>
-                                        <li><span>Units in Stock:</span>&nbsp; <?php echo $rowMovie['stock']; ?></li>
-                                    </ul>
-                                </div>
-                                <div class="share-desc">
-                                    <div class="share">
-                                        <p>Number of units :</p><input class="item_quantity" id="unit" class="text_box" type="text">				
-                                    </div>
-    <!--                                <div class="button"><span><a href="javascript:;" onclick="simpleCart.add('name=<?php echo $rowMovie['title']; ?>',
-                                                    'price=<?php echo $rowMovie['price']; ?>',
-                                                    'quantity='+document.getElementById('unit').value)">Add to Cart</a></span></div>					-->
-                                    <div class="button"><span><a href="javascript:;" class="item_add" >Add to Cart</a></span></div>	
-                                    <div class="clear"></div>
-                                </div>
-
-                            </div>
-                            <div class="clear"></div>
-                        </div>
+            <div class="content">
+                <div class="content_top">
+                    <div class="back-links">
+                        <p><a href="index.php">Home</a> &gt;&gt;&gt;&gt; <a href="#" class="active">Contact</a></p>
                     </div>
-                    <div class="product_desc">	
-                        <h2>Plot Summary :</h2>
-                        <p align="justify"><?php echo $rowMovie['plot']; ?></p>
-                    </div>
+                    <div class="clear"></div>
                 </div>
+                <div class="section group">
+                    <div class="simpleCart_items"></div>
+                    <div style="clear:left"></div>            
 
-                <div class="rightsidebar span_3_of_1 sidebar">
-                    <h2>Related Movies</h2>
-                    <?php
-                    while ($rowOther = mysqli_fetch_array($resultOther)) {
-                        ?>
-                        <div class="special_movies">
-                            <div class="movie_poster">
-                                <a href="preview.php?mid=<?php echo $rowOther['mid']; ?>"><img src="<?php echo $rowOther['picture']; ?>" alt="" /></a>
-                            </div>
-                            <div class="movie_desc">
-                                <h3><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>"><?php echo $rowOther['title']; ?></a></h3>
-                                <p>&nbsp; $<?php echo $rowOther['price']; ?></p>
-                                <span><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>">Preview</a></span>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <?php
-                    }
-                    ?>
-                </div>
-            </div>
+                    SubTotal: <span class="simpleCart_total"></span> <br />
+
+                    <span id="couponcode"></span><br />
+                    Final Total: <span class="simpleCart_finalTotal"></span><br />
+                    <a href="#" class="simpleCart_checkout">checkout</a>
+                </div>		
+            </div> 
         </div>
     </div>
     <div class="footer">
@@ -237,3 +206,4 @@ $resultOther = mysqli_query($link, $queryOther);
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 </body>
 </html>
+
