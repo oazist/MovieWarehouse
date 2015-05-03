@@ -94,17 +94,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="contact.html">Sitemap</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
                     <ul>
                         <li><a href="contact.html">Register</a></li>
                         <li><a href="contact.html">Login</a></li>
-                        <li><a href="preview.html">Delivery</a></li>
-                        <li><a href="#">Checkout</a></li>
                         <li><a href="#">My Account</a></li>
+                        <li><a href="viewcart.php">My Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>

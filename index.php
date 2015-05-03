@@ -62,8 +62,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul>
                         <li><a href="contact.html">Register</a></li>
                         <li><a href="contact.html">Login</a></li>
-                        <li><a href="viewcart.php">Checkout</a></li>
                         <li><a href="#">My Account</a></li>
+                        <li><a href="viewcart.php">My Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>

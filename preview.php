@@ -44,8 +44,8 @@ $resultOther = mysqli_query($link, $queryOther);
                     <ul>
                         <li><a href="contact.html">Register</a></li>
                         <li><a href="contact.html">Login</a></li>
-                        <li><a href="#">Checkout</a></li>
                         <li><a href="#">My Account</a></li>
+                        <li><a href="viewcart.php">My Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
