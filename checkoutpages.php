@@ -1,3 +1,14 @@
+<?php
+//Get JSON from viewcard.php using $_POST
+$obj = json_decode($_POST['table']);
+
+require_once('includes/config.inc.php');
+
+/* Get all movie from database */
+$link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
+mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
+?>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -6,7 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-    <title>Free Movies Store Website Template | Contact :: w3layouts</title>
+    <title>Movie Warehouse</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -14,86 +25,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
-    <script type="text/javascript" src="web/js/jquery.redirect.js"></script>
-
-
-    <script type="text/javascript">
-        simpleCart({
-            // array representing the format and columns of the cart,
-            // see the cart columns documentation
-            cartColumns: [
-                {attr: "name", label: "Product"},
-                {view: "currency", attr: "price", label: "Price"},
-                {view: "decrement", label: "Decrease"},
-                {attr: "quantity", label: "Quantity"},
-                {view: "increment", label: "Increase"},
-                {view: "currency", attr: "total", label: "SubTotal"},
-                {view: "remove", text: "Remove", label: false}
-            ],
-            // "div" or "table" - builds the cart as a 
-            // table or collection of divs
-            cartStyle: "table",
-            // how simpleCart should checkout, see the 
-            // checkout reference for more info 
-            checkout: {
-                type: "PayPal",
-                email: "you@yours.com"
-            },
-            // set the currency, see the currency 
-            // reference for more info
-            currency: "USD",
-            // collection of arbitrary data you may want to store 
-            // with the cart, such as customer info
-        });
-    </script>
-    
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.from_html.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.split_text_to_size.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.cell.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.addimage.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.javascript.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.sillysvgrenderer.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.javascript.js"></script>
+    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.PLUGINTEMPLATE.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
     <script>
-        function extractData() {
-            /*The purpose of this function is to collect required data from viewcard.php and send it to checkout.php*/
-            //gets table
-            var mTable = document.getElementById('reciept');
+        function printPDF() {
 
-            //gets rows of table
-            var rowLength = mTable.rows.length
-            var tableArray = [];
+            var doc = new jsPDF();
 
-            //loops through rows    
-            for (i = 0; i < rowLength; i++) {
-                //gets cells of current row  
-                var mCells = mTable.rows.item(i).cells;
-                //gets amount of cells of current row
-                var cellLength = mCells.length;
-                
-                var objAdd = {};
-                if(i==0){
-                    objAdd.Product = 'Product';
-                    objAdd.Price = 'Price';
-                    objAdd.Quantity = 'Quantity';
-                    objAdd.TotalSum = 'Total';
-                    tableArray.push(objAdd);
-                }else{
-                    objAdd.Product = mCells.item(0).innerHTML;
-                    objAdd.Price = mCells.item(1).innerHTML;
-                    objAdd.Quantity = mCells.item(3).innerHTML;
-                    objAdd.TotalSum = mCells.item(5).innerHTML;
-                    tableArray.push(objAdd);
+            var elementHandler = {
+                '#header': function (element, renderer) {
+                    return true;
                 }
-            }
-            
-            var sendData = JSON.stringify(tableArray);
-            //document.write(sendData);
-            $.redirect('checkoutpages.php', {'table': sendData});
-            
+            };
+            var source = $('#print-pdf').html();
+            var margins = {
+                top: 15,
+                bottom: 15,
+                left: 15,
+                width: 522
+            };
+            // all coords and widths are in jsPDF instance's declared units
+            // 'inches' in this case
+            doc.fromHTML(
+                    source, // HTML string or DOM elem ref.
+                    margins.left, // x coord
+                    margins.top, {// y coord
+                        'width': margins.width, // max width of content on PDF
+                        'elementHandlers': elementHandler
+                    });
+            doc.output("dataurlnewwindow");
         }
     </script>
 </head>
 <body>
-    <div class="header" id="header">
+    <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
                 <div class="nav_list">
                     <ul>
-                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="contact.html">Sitemap</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -113,7 +92,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="wrap">
             <div class="header_top">
                 <div class="logo">
-                    <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
+                    <a href="index.html"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
                     Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
@@ -160,17 +139,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <div class="clear"></div>
                 </div>
-                <div class="section group" id="section-group">
-                    <div class="simpleCart_items" id="cartItem">
+                <div class="section group" id="print-pdf">
+                    <div id="user-info">
+                        <!--User info will be display here-->
+                        User info will be display here
                     </div>
-                    <div style="clear:left"></div>            
-                    SubTotal: <span class="simpleCart_total" id="subtotal"></span> <br />
-<!--                    <span id="couponcode"></span><br />
-                    Final Total: <span class="simpleCart_finalTotal"></span><br />-->
+                    <br/>
+                    <div id="cart-item">
+                        <table id="cart-table">
+                            <thead>
+                                <tr>
+                                    <th><?php echo $obj[0]->Product;?></th>
+                                    <th><?php echo $obj[0]->Price;?></th>
+                                    <th><?php echo $obj[0]->Quantity;?></th>
+                                    <th><?php echo $obj[0]->TotalSum;?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                for($i=1;$i<count($obj);$i++){
+                                ?>
+                                <tr>
+                                    <td> <?php echo $obj[$i]->Product;?> </td>
+                                    <td> <?php echo $obj[$i]->Price;?> </td>
+                                    <td> <?php echo $obj[$i]->Quantity;?> </td>
+                                    <td> <?php echo $obj[$i]->TotalSum;?> </td>
+                                </tr>
+                                <?php 
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="total">
+                        <div style="clear:left"></div>            
+                        SubTotal: <span class="simpleCart_total" id="subtotal"></span> <br />
+                    </div>
                 </div>
-            </div>
-            <a href="javascript:;" onclick="extractData()">checkout</a><br/>
-            
+                <input type="button" onclick="updateDatabase()" value="Confirm Purchase"/>
+                <input type="button" onclick="printPDF()" value="Print Reciept"/>
+            </div> 
         </div>
     </div>
     <div class="footer">
@@ -200,7 +208,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h4>My account</h4>
                     <ul>
                         <li><a href="contact.html">Sign In</a></li>
-                        <li><a href="index.php">View Cart</a></li>
+                        <li><a href="index.html">View Cart</a></li>
                         <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="contact.html">Help</a></li>
@@ -238,4 +246,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 </body>
 </html>
+
 

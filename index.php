@@ -25,6 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/jquery.nivo.slider.js"></script>
+    <script type="text/javascript" src="web/js/simpleCart.js"></script>
     <script type="text/javascript">
         $(window).load(function () {
             $('#slider').nivoSlider();
@@ -61,7 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul>
                         <li><a href="contact.html">Register</a></li>
                         <li><a href="contact.html">Login</a></li>
-                        <li><a href="#">Checkout</a></li>
+                        <li><a href="viewcart.php">Checkout</a></li>
                         <li><a href="#">My Account</a></li>
                     </ul>
                 </div>
@@ -74,20 +75,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    <div class="cart">
-                        <p><span>Cart</span><div id="dd" class="wrapper-dropdown-2"> (empty)
-                            <ul class="dropdown">
-                                <li>you have no items in your Shopping cart</li>
-                            </ul></div></p>
-                    </div>
-                    <div class="search_box">
-                        <form>
-                            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                        this.value = 'Search';
-                                    }"><input type="submit" value="">
-                        </form>
-                    </div>
+                    Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
+                    <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
+                    <a href="viewcart.php" class="viewcart">Viewcart</a>
+                    
+<!--                <div class="cart">
+                    <p><span>Cart</span>
+                        <span class="simpleCart_total"></span>(<span class="simpleCart_quantity"></span> items) <br/>
                     <div class="clear"></div>
+                </div>-->
                 </div>
                 <script type="text/javascript">
                     function DropDown(el) {
