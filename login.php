@@ -109,7 +109,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                                 <div>
                                     <span><label>PASSWORD</label></span>
-                                    <span><input  placeholder="Password" name="password" type="text" class="textbox"></span>
+                                    <span><input  placeholder="Password" name="password" type="password" class="textbox"></span>
                                 </div>
                                 
                                 <div>
