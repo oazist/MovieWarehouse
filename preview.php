@@ -104,7 +104,7 @@ $resultOther = mysqli_query($link, $queryOther);
         <div class="wrap">
             <div class="content_top">
                 <div class="back-links">
-                    <p><a href="index.php">Home</a> &gt;&gt; <a href="#" class="active">English</a></p>
+                    <p><a href="index.php">Home</a> &gt;&gt; <a href="#" class="active">Preview</a></p>
                 </div>
                 <div class="clear"></div>
             </div>
