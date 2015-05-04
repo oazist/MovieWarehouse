@@ -2,6 +2,8 @@
 
 require_once('config.inc.php');
 
+session_start();
+
 $categories = $_GET['cat'];
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
 mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
@@ -30,10 +32,26 @@ while ($rowMovie = mysqli_fetch_array($resultMovie)) {
     $response .= "<h2><a href='preview.php?mid='".$rowMovie['mid']."'>".$rowMovie['title']."</a></h2>";
     $response .= "<div class='price-details'>";
     $response .= "<div class='price-number'>";
-    $response .= "<p><span class='rupees'>$".$rowMovie['price']."</span></p>";
+    $response .= "<p><span class='rupees'>Prices $".$rowMovie['price']."</span></p>";
     $response .= "</div>";
     $response .= "<div class='add-cart'>";
-    $response .= "<h4><a href='preview.php?mid=".$rowMovie['mid']."'>Preview</a></h4>";
+    if (isset($_SESSION['logged_in']))
+     {
+        if ($_SESSION['uid'] == 1) 
+            {
+                $response .= "<h4><a href='preview.php?mid='".$rowMovie['mid']."> Edit</a></h4><br>";
+                $response .= "<h4><a href='delete.php?mid='".$rowMovie['mid'].">Delete</a></h4>";
+            }
+        else 
+            {
+                $response .= "<h4><a href='preview.php?mid='".$rowMovie['mid'].">Preview</a></h4>";
+            }
+     }
+    else 
+     {
+        $response .="<h4><a href='preview.php?mid='".$rowMovie['mid'].">Preview</a></h4>";                                    
+     }
+     
     $response .= "</div>";
     $response .= "<div class='clear'></div>";
     $response .= "</div>";

@@ -206,10 +206,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <h2><a href="preview.php?mid=<?php echo $row['mid']; ?>"><?php echo $row['title']; ?></a></h2>
                             <div class="price-details">
                                 <div class="price-number">
-                                    <p><span class="rupees"><?php echo "$" . $row['price']; ?></span></p>
+                                    <p><span class="rupees"><?php echo "Prices $" . $row['price']; ?></span></p>
                                 </div>
-                                <div class="add-cart">								
-                                    <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h4>
+                                <div class="add-cart">	
+
+
+                                    <?php
+                                    if (isset($_SESSION['logged_in'])) {
+                                        if ($_SESSION['uid'] == 1) {
+                                            ?>
+                                            <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Edit</a></h4><br>
+                                            <h4><a href="delete.php?mid=<?php echo $row['mid']; ?>">Delete</a></h4>
+                                        <?php } else {
+                                            ?>
+                                            <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h4>
+                                            <?php
+                                        }
+                                    } 
+                                    
+                                    else {
+                                        ?>
+                                            <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h4>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="clear"></div>
                             </div>					 

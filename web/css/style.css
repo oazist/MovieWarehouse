@@ -34,7 +34,7 @@ img{max-width:100%;}
 }
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	background: #FFF;
+	background: #1c1c1c;
 }
 .wrap {
 	width:80%;
@@ -46,12 +46,12 @@ body {
 	-ms-transition:all .2s linear;
 }
 .header {
-	background: #FFF;
+	background: #1c1c1c;
 }
 .headertop_desc{
 	padding:20px 0;
-	background:#222;
-	border-bottom:1px solid #EEE;
+	background:#fe8916;
+	border-bottom:3px solid #EEE;
 }
 .nav_list{
 	float:left;
@@ -61,8 +61,8 @@ body {
 	border-left: 2px ridge #3D3B3B;
 }
 .nav_list li a{
-	font-size:0.823em;
-	color:#9C9C9C;
+	font-size:1.0em;
+	color:#fff;
 	padding:0 10px;
 	font-family: 'ambleregular';
 	 -webkit-transition: all 0.3s ease-out;
@@ -72,7 +72,7 @@ body {
     transition: all 0.3s ease-out;
 }
 .nav_list  li a:hover{
-	color:#FFF;
+	color:#1c1c1c;
 }
 .nav_list li:first-child{
 	border:none;
@@ -88,8 +88,8 @@ body {
 	border:none;
 }
 .account_desc li a{
-	font-size:0.823em;
-	color:#9C9C9C;
+	font-size:1.0em;
+	color:#fff;
 	padding:0 10px;
 	font-family: 'ambleregular';
 	 -webkit-transition: all 0.3s ease-out;
@@ -99,7 +99,7 @@ body {
     transition: all 0.3s ease-out;
 }
 .account_desc li a:hover{
-	color:#FFF;
+	color:#1c1c1c;
 }
 .header_top {
 	padding:20px 0;
@@ -229,12 +229,12 @@ body {
 	width:25%;
 }
 .categories{
-	border:1px solid #EEE;
+	
 }
 .categories h3{
 	font-size:1.2em;
 	color:#FFF;
-	padding:10px;
+	padding:15px;
 	background:#FC7D01;
 	text-transform:uppercase;
 	font-family: 'ambleregular';	
@@ -244,8 +244,8 @@ body {
 }
 .categories li a{
 	display:block;
-	font-size:0.85em;
-	padding:9px 15px;
+	font-size:1.0em;
+	padding:15px 15px;
     color: #9C9C9C;
     font-family: 'ambleregular';
     margin:0 20px;
@@ -266,7 +266,7 @@ body {
 }
 /***** Content *****/
 .content {
-	padding: 20px 0;
+	
 	background: #FFF;
 }
 .content_top{
@@ -282,7 +282,7 @@ body {
 }
 .heading h3 {
 	font-family: 'ambleregular';
-	font-size:1.2em;
+	font-size:1.5em;
 	color:#FC7D01;
 	text-transform: uppercase;
 }
@@ -368,10 +368,12 @@ body {
 	clear: both;
 	padding: 0px;
 	margin: 0px;
+        
 }
 .group:before, .group:after {
 	content: "";
 	display: table;
+        
 }
 .group:after {
 	clear: both;
