@@ -43,6 +43,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.javascript.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.PLUGINTEMPLATE.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <script type="text/javascript" src="web/js/jquery.redirect.js"></script>
     <script>
         function printPDF() {
 
@@ -69,7 +70,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         'width': margins.width, // max width of content on PDF
                         'elementHandlers': elementHandler
                     });
-            doc.output("dataurlnewwindow");
+            doc.save("reciept.pdf");
+        }
+        
+        function updateDatabase(){
+            var mTable = document.getElementById('cart-table');
+
+            //gets rows of table
+            var rowLength = mTable.rows.length;
+            var tableArray = [];
+
+            //loops through rows    
+            for (i = 1; i < rowLength; i++) {
+                //gets cells of current row  
+                var mCells = mTable.rows.item(i).cells;
+                //gets amount of cells of current row
+                var cellLength = mCells.length;
+                
+                var objAdd = {};
+                objAdd.Product = mCells.item(0).innerHTML;
+                objAdd.Quantity = mCells.item(2).innerHTML;
+                tableArray.push(objAdd);
+            }
+            
+            
+            var sendData = JSON.stringify(tableArray);
+            simpleCart.empty();
+            printPDF();
+            $.redirect('includes/checkout.inc.php', {'updateObject': sendData});
+            
         }
     </script>
 </head>
@@ -154,13 +183,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <br/>
                     <div id="cart-item">
+                        <?php 
+                        if(count($obj) > 0){
+                        ?>
                         <table id="cart-table">
                             <thead>
                                 <tr>
-                                    <th><?php echo $obj[0]->Product; ?></th>
-                                    <th><?php echo $obj[0]->Price; ?></th>
-                                    <th><?php echo $obj[0]->Quantity; ?></th>
-                                    <th><?php echo $obj[0]->TotalSum; ?></th>
+                                    <th><?php echo $obj[0]->Product;?></th>
+                                    <th><?php echo $obj[0]->Price;?></th>
+                                    <th><?php echo $obj[0]->Quantity;?></th>
+                                    <th><?php echo $obj[0]->TotalSum;?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,16 +200,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 for ($i = 1; $i < count($obj); $i++) {
                                     ?>
                                     <tr>
-                                        <td> <?php echo $obj[$i]->Product; ?> </td>
-                                        <td> <?php echo $obj[$i]->Price; ?> </td>
-                                        <td> <?php echo $obj[$i]->Quantity; ?> </td>
-                                        <td> <?php echo $obj[$i]->TotalSum; ?> </td>
+                                        <td><?php echo $obj[$i]->Product;?></td>
+                                        <td><?php echo $obj[$i]->Price;?></td>
+                                        <td><?php echo $obj[$i]->Quantity;?></td>
+                                        <td><?php echo $obj[$i]->TotalSum;?></td>
                                     </tr>
                                     <?php
                                 }
                                 ?>
                             </tbody>
                         </table>
+                        <?php 
+                        }
+                        ?>
                     </div>
                     <br/>
                     <div id="total">
@@ -185,8 +220,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         SubTotal: <span class="simpleCart_total" id="subtotal"></span> <br />
                     </div>
                 </div>
-                <input type="button" onclick="updateDatabase()" value="Confirm Purchase"/>
-                <input type="button" onclick="printPDF()" value="Print Reciept"/>
+                <a href="javascript:;" onclick="updateDatabase()">Confirm Purchase</a><br/>
             </div> 
         </div>
     </div>

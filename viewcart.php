@@ -141,8 +141,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="contact.html">Register</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="login.php">Login</a></li>
                         <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
@@ -198,7 +198,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="content">
                 <div class="content_top">
                     <div class="back-links">
-                        <p><a href="index.php">Home</a> &gt;&gt;&gt;&gt; <a href="#" class="active">Contact</a></p>
+                        <p><a href="index.php">Home</a> &gt;&gt; <a href="#" class="active">Contact</a></p>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -267,7 +267,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
             </div>
             <div class="copy_right">
-                <p>Company Name © All rights Reseverd | Design by  <a href="http://w3layouts.com">W3Layouts</a> </p>
+                <p>Company Name © All rights Reserved | Design by  <a href="http://w3layouts.com">W3Layouts</a> </p>
             </div>			
         </div>
     </div>

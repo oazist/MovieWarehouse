@@ -1,10 +1,12 @@
 <?php
-
 require_once('includes/config.inc.php');
 require_once('includes/functions.inc.php');
 
 session_start();
 
+if (isset($_SESSION['logged_in'])) {
+    redirect("index.php");
+}
 ?>
 
 <!--A Design by W3layouts
@@ -26,12 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
     <div class="header">
         <div class="headertop_desc">
-            <div class="wrap">
-                <?php
-                if (isset($_SESSION['logged_in'])) {
-                    redirect("index.php");
-                }else{
-                ?>
+            <div class="wrap">     
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
@@ -44,10 +41,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
-                <div class="clear"></div>
-                <?php
-                }
-                ?>
+                <div class="clear"></div>               
             </div>
         </div>
         <div class="wrap">
@@ -56,20 +50,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-<!--                    <div class="cart">
-                        <p><span>Cart</span><div id="dd" class="wrapper-dropdown-2"> (empty)
-                            <ul class="dropdown">
-                                <li>you have no items in your Shopping cart</li>
-                            </ul></div></p>
-                    </div>
-                    <div class="search_box">
-                        <form>
-                            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                                            this.value = 'Search';
-                                                                        }"><input type="submit" value="">
-                        </form>
-                    </div>
-                    <div class="clear"></div>-->
+                    <!--                    <div class="cart">
+                                            <p><span>Cart</span><div id="dd" class="wrapper-dropdown-2"> (empty)
+                                                <ul class="dropdown">
+                                                    <li>you have no items in your Shopping cart</li>
+                                                </ul></div></p>
+                                        </div>
+                                        <div class="search_box">
+                                            <form>
+                                                <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                                                                this.value = 'Search';
+                                                                                            }"><input type="submit" value="">
+                                            </form>
+                                        </div>
+                                        <div class="clear"></div>-->
                 </div>
                 <script type="text/javascript">
                     function DropDown(el) {
@@ -124,19 +118,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <span><label>PASSWORD</label></span>
                                     <span><input  placeholder="Password" name="password" type="password" class="textbox"></span>
                                 </div>
-                                
+
                                 <div>
                                     <span><input type="submit" name="login" id="login" value="Log in"  class="mybutton"></span>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    
+
                 </div>		
             </div> 
         </div>
     </div>
-    
+
     <div class="footer">
         <div class="wrap">	
             <div class="section group">
