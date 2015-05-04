@@ -1,3 +1,12 @@
+<?php
+
+require_once('includes/config.inc.php');
+require_once('includes/functions.inc.php');
+
+session_start();
+
+?>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -6,7 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-    <title>Free Movies Store Website Template | Contact :: w3layouts</title>
+    <title>Movie WareHouse</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -18,23 +27,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
+                <?php
+                if (isset($_SESSION['logged_in'])) {
+                    redirect("index.php");
+                }else{
+                ?>
                 <div class="nav_list">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="contact.html">Sitemap</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="contact.html">Register</a></li>
+                        <li><a href="register.html">Register</a></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="preview.html">Delivery</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">My Account</a></li>
+                        <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
+                <?php
+                }
+                ?>
             </div>
         </div>
         <div class="wrap">
@@ -188,4 +201,3 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 </body>
 </html>
-

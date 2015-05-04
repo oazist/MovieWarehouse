@@ -35,6 +35,43 @@ $resultOther = mysqli_query($link, $queryOther);
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
+                <?php 
+                if(isset($_SESSION['logged_in'])){
+                    if($_SESSION['uid'] == 1){
+                ?>
+                    <div class="nav_list">
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="account_desc">
+                        <ul>
+                            <li><a href="#">Admin Panel</a></li>
+                            <li><a href="contact.html">Log Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <?php } else {
+                    ?>
+                    
+                    <div class="nav_list">
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="account_desc">
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="viewcart.php">Shopping Cart</a></li>
+                            <li><a href="contact.html">Log Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                <?php 
+                    }
+                }else {
+                ?>
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
@@ -43,12 +80,14 @@ $resultOther = mysqli_query($link, $queryOther);
                 <div class="account_desc">
                     <ul>
                         <li><a href="contact.html">Register</a></li>
-                        <li><a href="contact.html">Login</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="viewcart.php">My Shopping Cart</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
+                <?php 
+                }
+                ?>
             </div>
         </div>
         <div class="wrap">
@@ -130,7 +169,7 @@ $resultOther = mysqli_query($link, $queryOther);
                                 </div>
                                 <div class="share-desc">
                                     <div class="share">
-                                        <p>Number of units :</p><input class="item_quantity" id="unit" class="text_box" type="text">				
+                                        <p>Number of units: </p><input class="item_quantity" id="unit" class="text_box" type="text">				
                                     </div>
     <!--                                <div class="button"><span><a href="javascript:;" onclick="simpleCart.add('name=<?php echo $rowMovie['title']; ?>',
                                                     'price=<?php echo $rowMovie['price']; ?>',

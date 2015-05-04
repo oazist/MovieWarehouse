@@ -1,3 +1,9 @@
+<?php
+
+
+
+?>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -91,6 +97,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="header" id="header">
         <div class="headertop_desc">
             <div class="wrap">
+                <?php 
+                if(isset($_SESSION['logged_in'])){
+                    if($_SESSION['uid'] == 1){
+                ?>
+                    <div class="nav_list">
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="account_desc">
+                        <ul>
+                            <li><a href="#">Admin Panel</a></li>
+                            <li><a href="contact.html">Log Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <?php } else {
+                    ?>
+                    
+                    <div class="nav_list">
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="account_desc">
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="viewcart.php">Shopping Cart</a></li>
+                            <li><a href="contact.html">Log Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                <?php 
+                    }
+                }else {
+                ?>
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
@@ -99,12 +142,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="account_desc">
                     <ul>
                         <li><a href="contact.html">Register</a></li>
-                        <li><a href="contact.html">Login</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="viewcart.php">My Shopping Cart</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
+                <?php 
+                }
+                ?>
             </div>
         </div>
         <div class="wrap">

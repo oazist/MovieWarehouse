@@ -1,9 +1,9 @@
 <?php
 //Get JSON from viewcard.php using $_POST
 $obj = json_decode($_POST['table']);
-
 require_once('includes/config.inc.php');
-
+require_once('includes/functions.inc.php');
+session_start();
 /* Get all movie from database */
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
 mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
@@ -70,6 +70,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
+                <?php 
+                if(!isset($_SESSION['logged_in'])){
+                    redirect("login.php");
+                }else{
+                ?>                                   
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
@@ -78,12 +83,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="account_desc">
                     <ul>
                         <li><a href="contact.html">Register</a></li>
-                        <li><a href="contact.html">Login</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="viewcart.php">My Shopping Cart</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
+                <?php 
+                }
+                ?>
             </div>
         </div>
         <div class="wrap">

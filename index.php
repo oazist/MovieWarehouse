@@ -1,5 +1,8 @@
 <?php
 require_once('includes/config.inc.php');
+require_once('includes/functions.inc.php');
+
+session_start();
 
 /* Get all movie from database */
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
@@ -53,20 +56,59 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
-                <div class="nav_list">
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                    </ul>
-                </div>
-                <div class="account_desc">
-                    <ul>
-                        <li><a href="contact.html">Register</a></li>
-                        <li><a href="contact.html">Login</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="viewcart.php">My Shopping Cart</a></li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
+                <?php
+                if (isset($_SESSION['logged_in'])) {
+                    if ($_SESSION['uid'] == 1) {
+                        ?>
+                        <div class="nav_list">
+                            <ul>
+                                <li><a href="index.php">Home</a></li>
+                            </ul>
+                        </div>
+                        <div class="account_desc">
+                            <ul>
+                                <li><a href="#">Admin Panel</a></li>
+                                <li><a href="contact.html">Log Out</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+
+                    <?php } else {
+                        ?>
+
+                        <div class="nav_list">
+                            <ul>
+                                <li><a href="index.php">Home</a></li>
+                            </ul>
+                        </div>
+                        <div class="account_desc">
+                            <ul>
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="viewcart.php">Shopping Cart</a></li>
+                                <li><a href="contact.html">Log Out</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <div class="nav_list">
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="account_desc">
+                        <ul>
+                            <li><a href="contact.html">Register</a></li>
+                            <li><a href="login.php">Login</a></li>
+                            <li><a href="viewcart.php">Shopping Cart</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
         <div class="wrap">
@@ -78,12 +120,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
                     <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
                     <a href="viewcart.php" class="viewcart">Viewcart</a>
-                    
-<!--                <div class="cart">
-                    <p><span>Cart</span>
-                        <span class="simpleCart_total"></span>(<span class="simpleCart_quantity"></span> items) <br/>
-                    <div class="clear"></div>
-                </div>-->
+
+                    <!--                <div class="cart">
+                                        <p><span>Cart</span>
+                                            <span class="simpleCart_total"></span>(<span class="simpleCart_quantity"></span> items) <br/>
+                                        <div class="clear"></div>
+                                    </div>-->
                 </div>
                 <script type="text/javascript">
                     function DropDown(el) {
@@ -175,85 +217,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <?php
                         $count++;
                     }
-                    
+
                     mysqli_close($link);
                     ?>
                 </div>
-                <!--                <div class="content_bottom">
-                                    <div class="heading">
-                                        <h3>Feature Products</h3>
-                                    </div>
-                                </div>
-                                <div class="section group">
-                                    <div class="grid_1_of_5 images_1_of_5">
-                                        <a href="preview.html"><img src="web/images/cover_pic/beauty_and_the_beast.jpg" alt="" /></a>
-                                        <h2><a href="preview.html">Beauty and the beast</a></h2>
-                                        <div class="price-details">
-                                            <div class="price-number">
-                                                <p><span class="rupees">$620.87</span></p>
-                                            </div>
-                                            <div class="add-cart">								
-                                                <h4><a href="preview.html">Add to Cart</a></h4>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                
-                                    </div>
-                                    <div class="grid_1_of_5 images_1_of_5">
-                                        <a href="preview.html"><img src="web/images/cover_pic/Eclipse.jpg" alt="" /></a>
-                                        <h2><a href="preview.html">Eclipse</a></h2>
-                                        <div class="price-details">
-                                            <div class="price-number">
-                                                <p><span class="rupees">$620.87</span></p>
-                                            </div>
-                                            <div class="add-cart">								
-                                                <h4><a href="preview.html">Add to Cart</a></h4>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                
-                                    </div>
-                                    <div class="grid_1_of_5 images_1_of_5">
-                                        <a href="preview.html"><img src="web/images/cover_pic/Coraline.jpg" alt="" /></a>
-                                        <h2><a href="preview.html">Coraline</a></h2>
-                                        <div class="price-details">
-                                            <div class="price-number">
-                                                <p><span class="rupees">$899.75</span></p>
-                                            </div>
-                                            <div class="add-cart">								
-                                                <h4><a href="preview.html">Add to Cart</a></h4>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                
-                                    </div>
-                                    <div class="grid_1_of_5 images_1_of_5">
-                                        <a href="preview.html"><img src="web/images/cover_pic/Unstoppable.jpg" alt="" /></a>
-                                        <h2><a href="preview.html">Unstoppable</a></h2>
-                                        <div class="price-details">
-                                            <div class="price-number">
-                                                <p><span class="rupees">$599.00</span></p>
-                                            </div>
-                                            <div class="add-cart">								
-                                                <h4><a href="preview.html">Add to Cart</a></h4>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1_of_5 images_1_of_5">
-                                        <a href="preview.html"><img src="web/images/cover_pic/Priest.jpg" alt="" /></a>
-                                        <h2><a href="preview.html">Priest 3D</a></h2>
-                                        <div class="price-details">
-                                            <div class="price-number">
-                                                <p><span class="rupees">$679.87</span></p>
-                                            </div>
-                                            <div class="add-cart">								
-                                                <h4><a href="preview.html">Add to Cart</a></h4>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>				     
-                                    </div>
-                                </div>-->
             </div>
         </div>
     </div>
