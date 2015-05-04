@@ -68,7 +68,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="account_desc">
                             <ul>
                                 <li><a href="#">Admin Panel</a></li>
-                                <li><a href="contact.html">Log Out</a></li>
+                                <li><a href="includes/logout.inc.php">Log Out</a></li>
                             </ul>
                         </div>
                         <div class="clear"></div>

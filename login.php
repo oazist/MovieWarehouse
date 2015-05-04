@@ -56,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    <div class="cart">
+<!--                    <div class="cart">
                         <p><span>Cart</span><div id="dd" class="wrapper-dropdown-2"> (empty)
                             <ul class="dropdown">
                                 <li>you have no items in your Shopping cart</li>
@@ -69,7 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                                         }"><input type="submit" value="">
                         </form>
                     </div>
-                    <div class="clear"></div>
+                    <div class="clear"></div>-->
                 </div>
                 <script type="text/javascript">
                     function DropDown(el) {
@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="content">
                 <div class="content_top">
                     <div class="back-links">
-                        <p><a href="index.php">Home</a> &gt;&gt;&gt;&gt; <a href="#" class="active">Contact</a></p>
+                        <p><a href="index.php">Home</a> &gt;&gt; <a href="#" class="active">Log In</a></p>
                     </div>
                     <div class="clear"></div>
                 </div>
