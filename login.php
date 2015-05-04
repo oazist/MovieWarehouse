@@ -53,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="wrap">
             <div class="header_top">
                 <div class="logo">
-                    <a href="index.html"><img src="web/images/logo.png" alt="" /></a>
+                    <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
                     <div class="cart">
@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="content">
                 <div class="content_top">
                     <div class="back-links">
-                        <p><a href="index.html">Home</a> &gt;&gt;&gt;&gt; <a href="#" class="active">Contact</a></p>
+                        <p><a href="index.php">Home</a> &gt;&gt;&gt;&gt; <a href="#" class="active">Contact</a></p>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -136,6 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div> 
         </div>
     </div>
+    
     <div class="footer">
         <div class="wrap">	
             <div class="section group">
@@ -163,7 +164,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h4>My account</h4>
                     <ul>
                         <li><a href="contact.html">Sign In</a></li>
-                        <li><a href="index.html">View Cart</a></li>
+                        <li><a href="index.php">View Cart</a></li>
                         <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="contact.html">Help</a></li>

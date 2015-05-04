@@ -78,13 +78,12 @@ strict.dtd">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                    	<img src="../logo.png" width="100%" />
+                    	<img src="../web/images/logo.png" width="100%" />
                     	
                     </div>
                     <div class="panel-body">
-                       <h2>Logged Out</h2> 
-	
-						<p>You have successfully logged out. Back to <a href="../login.php">login</a> screen.</p> 
+                    <h2>Logged Out</h2> 
+                    <p>You have successfully logged out. Back to <a href="../login.php">login</a> screen.</p> 
                     </div>
                 </div>
             </div>

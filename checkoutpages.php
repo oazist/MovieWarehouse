@@ -4,6 +4,9 @@ $obj = json_decode($_POST['table']);
 require_once('includes/config.inc.php');
 require_once('includes/functions.inc.php');
 session_start();
+if (!isset($_SESSION['logged_in'])) {
+    redirect("login.php");
+}
 /* Get all movie from database */
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
 mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
@@ -70,11 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
-                <?php 
-                if(!isset($_SESSION['logged_in'])){
-                    redirect("login.php");
-                }else{
-                ?>                                   
+
                 <div class="nav_list">
                     <ul>
                         <li><a href="index.php">Home</a></li>
@@ -82,21 +81,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="contact.html">Register</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="#">My Account</a></li>
                         <li><a href="viewcart.php">Shopping Cart</a></li>
+                        <li><a href="includes/logout.inc.php">Log Out</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
-                <?php 
-                }
-                ?>
+
             </div>
         </div>
         <div class="wrap">
             <div class="header_top">
                 <div class="logo">
-                    <a href="index.html"><img src="web/images/logo.png" alt="" /></a>
+                    <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
                     Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
@@ -153,23 +150,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <table id="cart-table">
                             <thead>
                                 <tr>
-                                    <th><?php echo $obj[0]->Product;?></th>
-                                    <th><?php echo $obj[0]->Price;?></th>
-                                    <th><?php echo $obj[0]->Quantity;?></th>
-                                    <th><?php echo $obj[0]->TotalSum;?></th>
+                                    <th><?php echo $obj[0]->Product; ?></th>
+                                    <th><?php echo $obj[0]->Price; ?></th>
+                                    <th><?php echo $obj[0]->Quantity; ?></th>
+                                    <th><?php echo $obj[0]->TotalSum; ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                for($i=1;$i<count($obj);$i++){
-                                ?>
-                                <tr>
-                                    <td> <?php echo $obj[$i]->Product;?> </td>
-                                    <td> <?php echo $obj[$i]->Price;?> </td>
-                                    <td> <?php echo $obj[$i]->Quantity;?> </td>
-                                    <td> <?php echo $obj[$i]->TotalSum;?> </td>
-                                </tr>
-                                <?php 
+                                for ($i = 1; $i < count($obj); $i++) {
+                                    ?>
+                                    <tr>
+                                        <td> <?php echo $obj[$i]->Product; ?> </td>
+                                        <td> <?php echo $obj[$i]->Price; ?> </td>
+                                        <td> <?php echo $obj[$i]->Quantity; ?> </td>
+                                        <td> <?php echo $obj[$i]->TotalSum; ?> </td>
+                                    </tr>
+                                    <?php
                                 }
                                 ?>
                             </tbody>
@@ -212,7 +209,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h4>My account</h4>
                     <ul>
                         <li><a href="contact.html">Sign In</a></li>
-                        <li><a href="index.html">View Cart</a></li>
+                        <li><a href="index.php">View Cart</a></li>
                         <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="contact.html">Help</a></li>

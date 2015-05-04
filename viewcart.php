@@ -126,7 +126,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <ul>
                             <li><a href="#">My Account</a></li>
                             <li><a href="viewcart.php">Shopping Cart</a></li>
-                            <li><a href="contact.html">Log Out</a></li>
+                            <li><a href="includes/logout.inc.php">Log Out</a></li>
                         </ul>
                     </div>
                     <div class="clear"></div>

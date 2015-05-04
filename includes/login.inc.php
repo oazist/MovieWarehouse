@@ -44,7 +44,7 @@ if ($_SESSION['logged_in'] == true) {
     if (is_object($result) && $result->num_rows == 1) {
         // Set session variable for login status to true 
         $row = mysqli_fetch_array($result);
-        $_SESSION['uid'] = $row['id'];
+        $_SESSION['uid'] = $row['uid'];
         $_SESSION['logged_in'] = true;
         redirect('../index.php');
         
