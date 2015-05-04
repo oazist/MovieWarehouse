@@ -1,3 +1,12 @@
+<?php
+
+require_once('includes/config.inc.php');
+require_once('includes/functions.inc.php');
+
+session_start();
+
+?>
+
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -6,7 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-    <title>Free Movies Store Website Template | Contact :: w3layouts</title>
+    <title>Movie WareHouse</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -18,32 +27,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
+                <?php
+                if (isset($_SESSION['logged_in'])) {
+                    redirect("index.php");
+                }else{
+                ?>
                 <div class="nav_list">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="contact.html">Sitemap</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="contact.html">Register</a></li>
+                        <li><a href="register.html">Register</a></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="preview.html">Delivery</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">My Account</a></li>
+                        <li><a href="viewcart.php">Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
+                <?php
+                }
+                ?>
             </div>
         </div>
         <div class="wrap">
             <div class="header_top">
                 <div class="logo">
-                    <a href="index.html"><img src="web/images/logo.png" alt="" /></a>
+                    <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    <div class="cart">
+<!--                    <div class="cart">
                         <p><span>Cart</span><div id="dd" class="wrapper-dropdown-2"> (empty)
                             <ul class="dropdown">
                                 <li>you have no items in your Shopping cart</li>
@@ -56,7 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                                         }"><input type="submit" value="">
                         </form>
                     </div>
-                    <div class="clear"></div>
+                    <div class="clear"></div>-->
                 </div>
                 <script type="text/javascript">
                     function DropDown(el) {
@@ -94,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="content">
                 <div class="content_top">
                     <div class="back-links">
-                        <p><a href="index.html">Home</a> &gt;&gt;&gt;&gt; <a href="#" class="active">Contact</a></p>
+                        <p><a href="index.php">Home</a> &gt;&gt; <a href="#" class="active">Log In</a></p>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -123,6 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div> 
         </div>
     </div>
+    
     <div class="footer">
         <div class="wrap">	
             <div class="section group">
@@ -150,7 +164,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h4>My account</h4>
                     <ul>
                         <li><a href="contact.html">Sign In</a></li>
-                        <li><a href="index.html">View Cart</a></li>
+                        <li><a href="index.php">View Cart</a></li>
                         <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="contact.html">Help</a></li>
@@ -188,4 +202,3 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 </body>
 </html>
-
