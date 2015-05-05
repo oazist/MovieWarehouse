@@ -11,6 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" type='text/css' href='web/css/bootstrap.css'>
         <link rel = "stylesheet" type='text/css' href='web/css/bootstrap-editable.css'>
+        <link rel="stylesheet" href="web/css/font-awesome.css">
         <script src='web/js/jquery-1.11.2.min.js'></script>
         <script src='web/js/bootstrap.js'></script>
         <script src='web/js/bootstrap-editable.js'></script>
@@ -33,8 +34,8 @@ and open the template in the editor.
                                 tagA.setAttribute('data-type', 'text');
                                 tagA.setAttribute('data-pk', respond[i].mid);
                                 tagA.setAttribute('data-url', 'includes/updateData.php');
-                                tagA.setAttribute('data-name','title');
-                                tagA.setAttribute('id', 'title'+i);
+                                tagA.setAttribute('data-name', 'title');
+                                tagA.setAttribute('id', 'title' + i);
                                 tagA.appendChild(t);
                                 mTd.appendChild(tagA);
                                 mRow.appendChild(mTd);
@@ -44,9 +45,9 @@ and open the template in the editor.
                                 var tagA = document.createElement("a");
                                 tagA.setAttribute('data-type', 'select');
                                 tagA.setAttribute('data-pk', respond[i].mid);
-                                tagA.setAttribute('data-name','cid');
+                                tagA.setAttribute('data-name', 'cid');
                                 tagA.setAttribute('data-url', 'includes/updateData.php');
-                                tagA.setAttribute('id', 'cid'+i);
+                                tagA.setAttribute('id', 'cid' + i);
                                 mTd.appendChild(tagA);
                                 mRow.appendChild(mTd);
 
@@ -56,9 +57,9 @@ and open the template in the editor.
                                 var t = document.createTextNode(respond[i].stock);
                                 tagA.setAttribute('data-type', 'text');
                                 tagA.setAttribute('data-pk', respond[i].mid);
-                                tagA.setAttribute('data-name','stock');
+                                tagA.setAttribute('data-name', 'stock');
                                 tagA.setAttribute('data-url', 'includes/updateData.php');
-                                tagA.setAttribute('id', "stock"+i);
+                                tagA.setAttribute('id', "stock" + i);
                                 tagA.appendChild(t);
                                 mTd.appendChild(tagA);
                                 mRow.appendChild(mTd);
@@ -69,9 +70,9 @@ and open the template in the editor.
                                 var t = document.createTextNode(respond[i].price);
                                 tagA.setAttribute('data-type', 'text');
                                 tagA.setAttribute('data-pk', respond[i].mid);
-                                tagA.setAttribute('data-name','price');
+                                tagA.setAttribute('data-name', 'price');
                                 tagA.setAttribute('data-url', 'includes/updateData.php');
-                                tagA.setAttribute('id', "price"+i);
+                                tagA.setAttribute('id', "price" + i);
                                 tagA.appendChild(t);
                                 mTd.appendChild(tagA);
                                 mRow.appendChild(mTd);
@@ -99,23 +100,24 @@ and open the template in the editor.
                                 mRow.appendChild(mTd);
                                 document.getElementById("table-body").appendChild(mRow);
 
-                                $("#title"+i).editable({
-                                    success: function(respond,newValue){
+                                //Implement x-editable library
+                                $("#title" + i).editable({
+                                    success: function (respond, newValue) {
                                         console.log(respond);
                                         console.log(newValue);
                                     }
                                 });
-                                
-                                var cid=0;
-                                if(respond[i].category == 'Action'){
-                                    cid=1;
-                                }else if(respond[i].category == 'Drama'){
-                                    cid=2;
-                                }else{
-                                    cid=3;
+
+                                var cid = 0;
+                                if (respond[i].category == 'Action') {
+                                    cid = 1;
+                                } else if (respond[i].category == 'Drama') {
+                                    cid = 2;
+                                } else {
+                                    cid = 3;
                                 }
                                 console.log(cid);
-                                $("#cid"+i).editable({
+                                $("#cid" + i).editable({
                                     value: cid,
                                     source: [
                                         {value: 1, text: 'Action'},
@@ -123,15 +125,15 @@ and open the template in the editor.
                                         {value: 3, text: 'Animation'}
                                     ]
                                 });
-                                
-                                $("#stock"+i).editable({
-                                    success: function(respond,newValue){
+
+                                $("#stock" + i).editable({
+                                    success: function (respond, newValue) {
                                         console.log(respond);
                                         console.log(newValue);
                                     }
                                 });
-                                $("#price"+i).editable({
-                                    success: function(respond,newValue){
+                                $("#price" + i).editable({
+                                    success: function (respond, newValue) {
                                         console.log(respond);
                                         console.log(newValue);
                                     }
@@ -149,17 +151,17 @@ and open the template in the editor.
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand">MStore Admin Panel</a>
+                    <a href="index.php" class="navbar-brand"> MStore Admin Panel</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a>Home</a>
+                            <a href="index.php"><i class="fa fa-home"></i> Home</a>
                         </li>
                         <li>
-                            <a>Log out</a>
+                            <a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -183,19 +185,13 @@ and open the template in the editor.
                                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Movie Title">
                                 </div>
                                 <div class="form-group">
-                                    <div class="dropdown">
-                                        <label for="dropdownMenu1">Select Movie Category </label>
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                            Select Category
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                        </ul>
-                                    </div>
+
+                                    <label for="dropdownMenu1">Select Movie Category </label>
+                                    <select name="category" class="form-control">
+                                        <option value="1" >Action</option>
+                                        <option value="2" >Drama</option>
+                                        <option value="3" >Animation</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="stock">Unit-In-Stock</label>
@@ -217,8 +213,13 @@ and open the template in the editor.
                                     <input type="file" id="posterphoto">
                                     <p class="help-block">Image size should be 340x202 px</p>
                                 </div>
+                                
+                                 <div class="form-group">
+                                    <label for="price">Plot Summary</label>
+                                    <textarea rows="6" class="form-control" id="plot"></textarea>
+                                </div>
 
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-default" style="float: right">Submit</button>
                             </form>
                             <!--End of Form-->
                         </div>
@@ -226,7 +227,7 @@ and open the template in the editor.
                     <!--End of col-md-4-->
                 </div>
                 <div class='col-md-8'>
-                    <div class="panel-default panel">
+                    <div class="panel-info panel">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> List of Movie</h3>
                         </div>

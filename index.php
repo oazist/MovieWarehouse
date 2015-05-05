@@ -30,7 +30,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="web/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="web/css/font-awesome.css">
-    <script type="text/javascript" src="web/js/jquery-1.9.0.min.js"></script> 
+    <script type="text/javascript" src="web/js/jquery-1.11.2.min.js"></script> 
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/jquery.nivo.slider.js"></script>
@@ -73,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="#">Admin</a></li>
+                                <li><a href="adminpanel.html"><i class="fa fa-user"></i> Admin Panel</a></li>
                                 <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>
