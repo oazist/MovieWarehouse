@@ -9,6 +9,11 @@ $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not 
 mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
 $query = "SELECT * FROM movie";
 $result = mysqli_query($link, $query) or die("Data not found");
+
+$uid = $_SESSION['uid'];
+$queryUser = "SELECT username FROM user WHERE uid=".$uid;
+$resultUser = mysqli_query($link, $queryUser);
+$rowUser = mysqli_fetch_array($resultUser);
 ?>
 <!--A Design by W3layouts
 Author: W3layout
@@ -24,6 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="web/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="web/css/font-awesome.css">
     <script type="text/javascript" src="web/js/jquery-1.9.0.min.js"></script> 
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
@@ -62,13 +68,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         ?>
                         <div class="nav_list">
                             <ul>
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
                             </ul>
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="#">Admin Panel</a></li>
-                                <li><a href="includes/logout.inc.php">Log Out</a></li>
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>
                         <div class="clear"></div>
@@ -78,14 +84,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                         <div class="nav_list">
                             <ul>
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
                             </ul>
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="profile.php">My Account</a></li>
-                                <li><a href="viewcart.php">Shopping Cart</a></li>
-                                <li><a href="includes/logout.inc.php">Log Out</a></li>
+                                <li><a href="profile.php"><i class="fa fa-user"></i> <?php echo $rowUser['username'];?></a></li>
+                                <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
+                                <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>
                         <div class="clear"></div>
@@ -95,14 +101,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     ?>
                     <div class="nav_list">
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
                         </ul>
                     </div>
                     <div class="account_desc">
                         <ul>
-                            <li><a href="contact.html">Register</a></li>
-                            <li><a href="login.php">Login</a></li>
-                            <li><a href="viewcart.php">Shopping Cart</a></li>
+                            <li><a href="register.html"><i class="fa fa-plus"></i> Register</a></li>
+                            <li><a href="login.php"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
                         </ul>
                     </div>
                     <div class="clear"></div>
