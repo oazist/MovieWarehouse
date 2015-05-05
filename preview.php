@@ -1,6 +1,7 @@
 <?php
 require_once('includes/config.inc.php');
 
+session_start();
 $mid = $_GET['mid'];
 
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
@@ -48,7 +49,7 @@ $resultOther = mysqli_query($link, $queryOther);
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="#">Admin</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> Admin</a></li>
                                 <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>
@@ -92,6 +93,7 @@ $resultOther = mysqli_query($link, $queryOther);
                 ?>
             </div>
         </div>
+        
         <div class="wrap">
             <div class="header_top">
                 <div class="logo">
@@ -101,13 +103,6 @@ $resultOther = mysqli_query($link, $queryOther);
                     Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
                     <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
                     <a href="viewcart.php" class="viewcart">Viewcart</a>
-                    <!--                    <div class="search_box">
-                                            <form>
-                                                <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                            this.value = 'Search';
-                                                        }"><input type="submit" value="">
-                                            </form>
-                                        </div>-->
                     <div class="clear"></div>
                 </div>
                 <script type="text/javascript">
