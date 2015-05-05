@@ -360,9 +360,9 @@ body {
 /*** Footer ***/
 .footer {
 	position: relative;
-	background: #FCFCFC;
-    border-top: 1px solid #CECECE;
-    margin:20px auto;
+	background: #ff7e16;
+        border-top: 70px solid #ff6316;
+        margin:20px auto;
 }
 .section {
 	clear: both;
@@ -760,6 +760,7 @@ body {
 	clear: both;
 	padding: 0px;
 	margin: 0px;
+        margin-left: 25%;
 }
 .group:before, .group:after {
 	content: "";
