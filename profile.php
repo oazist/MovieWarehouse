@@ -29,6 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="web/css/font-awesome.css">
     <script type="text/javascript" src="web/js/jquery-1.9.0.min.js"></script> 
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
@@ -40,14 +41,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="nav_list">
                     <ul>
-                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="viewcart.php">Shopping Cart</a></li>
+                        <li><a href="profile.php"><i class="fa fa-user"></i> <?php echo $rowUser['username']; ?></a></li>
+                        <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
+                        <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -145,21 +146,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                            //Query Transaction
-                            $queryTrans = "SELECT * FROM transaction WHERE uid=".$uid;
-                            $resultTrans = mysqli_query($link, $queryTrans);
-                            while($rowTrans = mysqli_fetch_array($resultTrans)){
-                            ?>
-                                <tr>
-                                    <td><?php echo $rowTrans['tid']; ?></td>
-                                    <td><?php echo $rowTrans['date']; ?></td>
-                                    <td><?php echo $rowTrans['creditcard']; ?></td>
-                                    <td><?php echo $rowTrans['amount']; ?></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                //Query Transaction
+                                $queryTrans = "SELECT * FROM transaction WHERE uid=" . $uid;
+                                $resultTrans = mysqli_query($link, $queryTrans);
+                                while ($rowTrans = mysqli_fetch_array($resultTrans)) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $rowTrans['tid']; ?></td>
+                                        <td><?php echo $rowTrans['date']; ?></td>
+                                        <td><?php echo $rowTrans['creditcard']; ?></td>
+                                        <td><?php echo $rowTrans['amount']; ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
