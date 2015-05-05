@@ -32,6 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
+    
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.from_html.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.split_text_to_size.js"></script>
@@ -40,9 +41,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.addimage.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.javascript.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.sillysvgrenderer.js"></script>
-    <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.javascript.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.PLUGINTEMPLATE.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    
     <script type="text/javascript" src="web/js/jquery.redirect.js"></script>
     <link href="web/css/table.css" rel="stylesheet" type="text/css" media="all"/>
     <script>
