@@ -46,10 +46,8 @@ if (!isset($_SESSION['logged_in'])) {
     $credit = $row['creditcard'];
     
     $subtotal = $_POST['subtotal'];
-    echo $subtotal."<br/>";
     
     $subtotal = substr($subtotal, 1);
-    echo $subtotal."<br/>";
     
     $uid = $_SESSION['uid'];
     $date = date_create()->format('Y-m-d H:i:s');
