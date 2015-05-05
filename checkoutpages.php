@@ -43,6 +43,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.javascript.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.PLUGINTEMPLATE.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <link href="web/css/table.css" rel="stylesheet" type="text/css" media="all"/>
     <script>
         function printPDF() {
 
