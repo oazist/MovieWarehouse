@@ -35,9 +35,33 @@ if (!isset($_SESSION['logged_in'])) {
         $queryUpdate = "UPDATE movie SET stock=".$updateStock." WHERE title='".$product."'";
         mysqli_query($link, $queryUpdate);
     }
-
     
-    redirect("../index.php");
+    /*get the credit card detail*/
+    $uid = $_SESSION['uid'];
+    $queryCredit = "SELECT creditcard FROM user WHERE uid=".$uid;
+    $resultCredit = mysqli_query($link, $queryCredit);
+    $row = mysqli_fetch_array($resultCredit);
+    
+    /*gathering all required data*/
+    $credit = $row['creditcard'];
+    
+    $subtotal = $_POST['subtotal'];
+    echo $subtotal."<br/>";
+    
+    $subtotal = substr($subtotal, 1);
+    echo $subtotal."<br/>";
+    
+    $uid = $_SESSION['uid'];
+    $date = date_create()->format('Y-m-d H:i:s');
+    
+    //Create Transaction History
+    $create_transaction = "INSERT INTO transaction (`uid`, `amount`, `date`, `creditcard`) "."VALUES (".$uid.",'".$subtotal."','".$date."','".$credit."'".");";
+    mysqli_query($link, $create_transaction) or die("Can't add transaction");
+   
+    
+    
+    mysqli_close($link);
+    redirect("../profile.php");
 }
 ?>
 

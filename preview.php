@@ -62,7 +62,7 @@ $resultOther = mysqli_query($link, $queryOther);
                     </div>
                     <div class="account_desc">
                         <ul>
-                            <li><a href="#">My Account</a></li>
+                            <li><a href="profile.php">My Account</a></li>
                             <li><a href="viewcart.php">Shopping Cart</a></li>
                             <li><a href="includes/logout.inc.php">Log Out</a></li>
                         </ul>

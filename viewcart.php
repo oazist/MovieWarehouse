@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-    <title>Free Movies Store Website Template | Contact :: w3layouts</title>
+    <title>Movie WareHouse</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -124,7 +124,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <div class="account_desc">
                         <ul>
-                            <li><a href="#">My Account</a></li>
+                            <li><a href="profile.php">My Account</a></li>
                             <li><a href="viewcart.php">Shopping Cart</a></li>
                             <li><a href="includes/logout.inc.php">Log Out</a></li>
                         </ul>

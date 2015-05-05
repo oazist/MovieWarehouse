@@ -17,7 +17,8 @@
 	$sql = "INSERT INTO `user` (`name`, `username`, `password`, `email`, `creditcard`, `accountType`) "
                ."VALUES ( '".$current."','".$current2."','".$current3."','".$current4."','".$current5."', '1');";
         
-        $result = mysqli_query($link,$sql)or die("Data not found")
+        $result = mysqli_query($link,$sql)or die("Data not found");
+        mysqli_close($link);
                 
         //header("location:login.php");
 	

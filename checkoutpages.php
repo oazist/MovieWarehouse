@@ -74,6 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
         
         function updateDatabase(){
+            var mSubtotal = document.getElementById('subtotal').innerHTML;
             var mTable = document.getElementById('cart-table');
 
             //gets rows of table
@@ -95,10 +96,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             
             
             var sendData = JSON.stringify(tableArray);
-            simpleCart.empty();
             printPDF();
-            $.redirect('includes/checkout.inc.php', {'updateObject': sendData});
-            
+            simpleCart.empty();
+            $.redirect('includes/checkout.inc.php', {'updateObject': sendData, 'subtotal': mSubtotal});
         }
     </script>
 </head>
