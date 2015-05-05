@@ -21,8 +21,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
     <script type="text/javascript" src="web/js/jquery.redirect.js"></script>
-
-
+    <link href="web/css/table.css" rel="stylesheet" type="text/css" media="all"/>
     <script type="text/javascript">
         simpleCart({
             // array representing the format and columns of the cart,
