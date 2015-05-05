@@ -13,6 +13,7 @@ if (!isset($_SESSION['logged_in'])) {
     $query = "SELECT * FROM user WHERE uid=" . $_SESSION['uid'];
     $result = mysqli_query($link, $query);
     $row = mysqli_fetch_array($result);
+    
 }
 ?>
 
@@ -97,7 +98,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 tableArray.push(objAdd);
             }
             
-            
             var sendData = JSON.stringify(tableArray);
             printPDF();
             simpleCart.empty();
@@ -117,7 +117,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="#">My Account</a></li>
+                        <li><a href="#"><?php echo $_SESSION['username'];?></a></li>
                         <li><a href="viewcart.php">Shopping Cart</a></li>
                         <li><a href="includes/logout.inc.php">Log Out</a></li>
                     </ul>

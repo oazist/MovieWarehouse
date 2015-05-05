@@ -19,6 +19,7 @@ $rowCat = mysqli_fetch_array($resultCat);
 /* Fetch other movies */
 $queryOther = "SELECT * FROM movie WHERE mid!='" . $mid . "' && cid=" . $rowMovie['cid'] . " LIMIT 5";
 $resultOther = mysqli_query($link, $queryOther);
+
 ?>
 <head>
     <title>Movie Warehouse</title>
@@ -36,57 +37,57 @@ $resultOther = mysqli_query($link, $queryOther);
     <div class="header">
         <div class="headertop_desc">
             <div class="wrap">
-                <?php 
-                if(isset($_SESSION['logged_in'])){
-                    if($_SESSION['uid'] == 1){
-                ?>
-                    <div class="nav_list">
-                        <ul>
-                            <li><a href="index.php">Home</a></li>
-                        </ul>
-                    </div>
-                    <div class="account_desc">
-                        <ul>
-                            <li><a href="#">Admin Panel</a></li>
-                            <li><a href="contact.html">Log Out</a></li>
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                    
+                <?php
+                if (isset($_SESSION['logged_in'])) {
+                    if ($_SESSION['uid'] == 1) {
+                        ?>
+                        <div class="nav_list">
+                            <ul>
+                                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                            </ul>
+                        </div>
+                        <div class="account_desc">
+                            <ul>
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+
                     <?php } else {
+                        ?>
+
+                        <div class="nav_list">
+                            <ul>
+                                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                            </ul>
+                        </div>
+                        <div class="account_desc">
+                            <ul>
+                                <li><a href="profile.php"><i class="fa fa-user"></i> <?php echo $_SESSION['username'];?></a></li>
+                                <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
+                                <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                        <?php
+                    }
+                } else {
                     ?>
-                    
                     <div class="nav_list">
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
                         </ul>
                     </div>
                     <div class="account_desc">
                         <ul>
-                            <li><a href="profile.php">My Account</a></li>
-                            <li><a href="viewcart.php">Shopping Cart</a></li>
-                            <li><a href="includes/logout.inc.php">Log Out</a></li>
+                            <li><a href="register.html"><i class="fa fa-plus"></i> Register</a></li>
+                            <li><a href="login.php"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
                         </ul>
                     </div>
                     <div class="clear"></div>
-                <?php 
-                    }
-                }else {
-                ?>
-                <div class="nav_list">
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                    </ul>
-                </div>
-                <div class="account_desc">
-                    <ul>
-                        <li><a href="contact.html">Register</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="viewcart.php">Shopping Cart</a></li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
-                <?php 
+                    <?php
                 }
                 ?>
             </div>

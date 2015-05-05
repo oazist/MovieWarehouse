@@ -32,14 +32,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">     
                 <div class="nav_list">
                     <ul>
-                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
                     </ul>
                 </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="viewcart.php">Shopping Cart</a></li>
+                        <li><a href="register.html"><i class="fa fa-plus"></i> Register</a></li>
+                        <li><a href="login.php"><i class="fa fa-sign-in"></i> Login</a></li>
+                        <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>               

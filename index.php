@@ -81,7 +81,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <?php } else {
                         ?>
-
                         <div class="nav_list">
                             <ul>
                                 <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
