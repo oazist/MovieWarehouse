@@ -11,6 +11,6 @@
 	
 	$result = mysqli_query($link, $sql) or die("Data not found");
 
-	header("location:index.php");
+	header("location:adminpanel.html");
 ?>
 
