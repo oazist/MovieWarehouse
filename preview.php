@@ -108,9 +108,9 @@ $resultOther = mysqli_query($link, $queryOther);
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
-                    <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
-                    <a href="viewcart.php" class="viewcart">Viewcart</a>
+                    <FONT COLOR='white' SIZE='4'>Cart :</FONT> <FONT COLOR='white' SIZE='4'><span class="simpleCart_total"></span></FONT> <FONT COLOR='#fc6910' SIZE='4'>(<span class="simpleCart_quantity"></span> items)</FONT> <br/>
+                    <a href="javascript:;" class="simpleCart_empty" ><FONT COLOR='#a8a8a8' SIZE='4'>Empty Cart</FONT></a> 
+                    <a href="viewcart.php" class="viewcart"><FONT COLOR='#fc6910' SIZE='4'>Viewcart</FONT></a>
                     <div class="clear"></div>
                 </div>
                 <script type="text/javascript">
@@ -162,21 +162,21 @@ $resultOther = mysqli_query($link, $queryOther);
                                 <img src="<?php echo $rowMovie['coverpic']; ?>" alt="" />
                             </div>
                             <div class="desc span_3_of_2">
-                                <h2 class="item_name" id="title"><?php echo $rowMovie['title']; ?></h2>
+                                <FONT COLOR='white' SIZE='6'><h2 class="item_name" id="title"><?php echo $rowMovie['title']; ?></h2></FONT>
                                 <p></p>					
                                 <div class="price">
-                                    <p>Price: <span class="item_price">$<?php echo $rowMovie['price']; ?></span></p>
+                                    <FONT COLOR='white' SIZE='5'>Price: <span class="item_price">$<?php echo $rowMovie['price']; ?></span></FONT>
                                 </div>
                                 <div class="available">
                                     <ul>
-                                        <li><span>Movie ID:</span> &nbsp; <?php echo $rowMovie['mid']; ?></li>
-                                        <li><span>Category:</span>&nbsp; <?php echo $rowCat['catalogue_name'] ?></li>
-                                        <li><span>Units in Stock:</span>&nbsp; <?php echo $rowMovie['stock']; ?></li>
+                                        <li><FONT COLOR='white' SIZE='3'>Movie ID :</FONT> &nbsp; <?php echo $rowMovie['mid']; ?></li>
+                                        <li><FONT COLOR='white' SIZE='3'>Category :</FONT>&nbsp; <?php echo $rowCat['catalogue_name'] ?></li>
+                                        <li><FONT COLOR='white' SIZE='3'>Units in Stock :</FONT>&nbsp; <?php echo $rowMovie['stock']; ?></li>
                                     </ul>
                                 </div>
                                 <div class="share-desc">
                                     <div class="share">
-                                        <p>Number of units: </p><input class="item_quantity" id="unit" class="text_box" type="text">				
+                                       <FONT COLOR='white' SIZE='3'>Number of units: </FONT><input class="item_quantity" id="unit" class="text_box" type="text">				
                                     </div>
     <!--                                <div class="button"><span><a href="javascript:;" onclick="simpleCart.add('name=<?php echo $rowMovie['title']; ?>',
                                                     'price=<?php echo $rowMovie['price']; ?>',
@@ -190,7 +190,7 @@ $resultOther = mysqli_query($link, $queryOther);
                         </div>
                     </div>
                     <div class="product_desc">	
-                        <h2>Plot Summary :</h2>
+                        <FONT COLOR='white' SIZE='5'>Plot Summary :</FONT>
                         <p align="justify"><?php echo $rowMovie['plot']; ?></p>
                     </div>
                 </div>
@@ -205,9 +205,11 @@ $resultOther = mysqli_query($link, $queryOther);
                                 <a href="preview.php?mid=<?php echo $rowOther['mid']; ?>"><img src="<?php echo $rowOther['picture']; ?>" alt="" /></a>
                             </div>
                             <div class="movie_desc">
-                                <h3><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>"><?php echo $rowOther['title']; ?></a></h3>
-                                <p>&nbsp; $<?php echo $rowOther['price']; ?></p>
-                                <span><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>">Preview</a></span>
+                                <h3><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>"><?php echo $rowOther['title']; ?></a></h3><br>
+                                <FONT COLOR='white' SIZE='3'>&nbsp; Prices $<?php echo $rowOther['price']; ?></FONT>
+                                <div class="add-cart">
+                                <h6><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>">Preview</a></h6>
+                                </div>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -218,7 +220,7 @@ $resultOther = mysqli_query($link, $queryOther);
 
                 <div class="cont-desc span_1_of_2">
                     <div id="container">
-                        <h1 id="videoHeader"></h1>
+                        <FONT COLOR='#FC7D01' SIZE='5'><h1 id="videoHeader"></h1></FONT><br>
                         <iframe width ="720" height="480" id="youtube">
                     </div>
                 </div>
