@@ -122,9 +122,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
-                    <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
-                    <a href="viewcart.php" class="viewcart">Viewcart</a>
+                    <FONT COLOR='white' SIZE='4'>Cart :</FONT> <FONT COLOR='white' SIZE='4'><span class="simpleCart_total"></span></FONT> <FONT COLOR='#fc6910' SIZE='4'>(<span class="simpleCart_quantity"></span> items)</FONT> <br/>
+                    <a href="javascript:;" class="simpleCart_empty" ><FONT COLOR='#a8a8a8' SIZE='4'>Empty Cart</FONT></a> 
+                    <a href="viewcart.php" class="viewcart"><FONT COLOR='#fc6910' SIZE='4'>Viewcart</FONT></a>
 
                     <!--                <div class="cart">
                                         <p><span>Cart</span>
@@ -221,17 +221,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         if ($_SESSION['uid'] == 1) {
                                             ?>
                                             <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Edit</a></h4><br>
-                                            <h4><a href="delete.php?mid=<?php echo $row['mid']; ?>">Delete</a></h4>
+                                            <h5><a href="delete.php?mid=<?php echo $row['mid']; ?>">Delete</a></h5>
                                         <?php } else {
                                             ?>
-                                            <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h4>
+                                            <h6><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h6>
                                             <?php
                                         }
                                     } 
                                     
                                     else {
                                         ?>
-                                            <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h4>
+                                            <h6><a href="preview.php?mid=<?php echo $row['mid']; ?>">Preview</a></h6>
                                         <?php
                                     }
                                     ?>
@@ -249,6 +249,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
         </div>
     </div>
+    
     <div class='footer'>
     </div>
     <script type="text/javascript">

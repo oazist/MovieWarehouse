@@ -1654,7 +1654,7 @@
                     ]);
                     simpleCart.bind("afterCreate", function () {
                         $cart_table = $(".simpleCart_items table")
-                        $cart_table.addClass("table").attr('id','reciept');
+                        $cart_table.addClass("table2").attr('id','reciept');
                     });
                 });
                 /*******************************************************************

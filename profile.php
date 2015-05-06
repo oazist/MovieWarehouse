@@ -173,7 +173,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
     </div>
     <div class="footer">
-        <div class="wrap">	
+<!--        <div class="wrap">	
             <div class="section group">
                 <div class="col_1_of_4 span_1_of_4">
                     <h4>Information</h4>
@@ -226,7 +226,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="copy_right">
                 <p>Company Name © All rights Reseverd | Design by  <a href="http://w3layouts.com">W3Layouts</a> </p>
             </div>			
-        </div>
+        </div>-->
     </div>
     <script type="text/javascript">
         $(document).ready(function () {

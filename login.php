@@ -124,7 +124,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <span><input type="submit" name="login" id="login" value="Log in"  class="mybutton"></span>
                                 </div>
                             </form>
-                            <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br><br> <br> <br><br> <br>
+                            <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br><br> <br> <br><br> <br> <br> <br>
                         </div>
                     </div>
 
