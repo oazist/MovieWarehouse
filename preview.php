@@ -205,6 +205,12 @@ $resultOther = mysqli_query($link, $queryOther);
                     }
                     ?>
                 </div>
+                
+                <div class="cont-desc span_1_of_2">
+                    <div id="container">
+                        <h1>Trailer</h1>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
