@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Admin Panel</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = "stylesheet" type='text/css' href='web/css/bootstrap.css'>
+        <link rel = "stylesheet" type='text/css' href='web/css/bootstrap-editable.css'>
+        <script src='web/js/jquery-1.11.2.min.js'></script>
+        <script src='web/js/bootstrap.js'></script>
+        <script src='web/js/bootstrap-editable.js'></script>
+        <script>
+            $(document).ready(function () {
+                $.post("includes/listMovie.php")
+                        .done(function (result) {
+                            var respond = JSON.parse(result);
+                            for (i = 0; i < respond.length; i++) {
+                                var mRow = document.createElement("tr");
+
+                                var mTd = document.createElement("td");
+                                mTd.innerHTML = respond[i].mid;
+                                mRow.appendChild(mTd);
+
+                                //Title
+                                var mTd = document.createElement("td");
+                                var tagA = document.createElement("a");
+                                var t = document.createTextNode(respond[i].title);
+                                tagA.setAttribute('data-type', 'text');
+                                tagA.setAttribute('data-pk', respond[i].mid);
+                                tagA.setAttribute('data-url', 'includes/updateData.php');
+                                tagA.setAttribute('data-name','title');
+                                tagA.setAttribute('id', 'title'+i);
+                                tagA.appendChild(t);
+                                mTd.appendChild(tagA);
+                                mRow.appendChild(mTd);
+
+                                //Category
+                                var mTd = document.createElement("td");
+                                var tagA = document.createElement("a");
+                                tagA.setAttribute('data-type', 'select');
+                                tagA.setAttribute('data-pk', respond[i].mid);
+                                tagA.setAttribute('data-name','cid');
+                                tagA.setAttribute('data-url', 'includes/updateData.php');
+                                tagA.setAttribute('id', 'cid'+i);
+                                mTd.appendChild(tagA);
+                                mRow.appendChild(mTd);
+
+                                //stock
+                                var mTd = document.createElement("td");
+                                var tagA = document.createElement("a");
+                                var t = document.createTextNode(respond[i].stock);
+                                tagA.setAttribute('data-type', 'text');
+                                tagA.setAttribute('data-pk', respond[i].mid);
+                                tagA.setAttribute('data-name','stock');
+                                tagA.setAttribute('data-url', 'includes/updateData.php');
+                                tagA.setAttribute('id', "stock"+i);
+                                tagA.appendChild(t);
+                                mTd.appendChild(tagA);
+                                mRow.appendChild(mTd);
+
+                                //price
+                                var mTd = document.createElement("td");
+                                var tagA = document.createElement("a");
+                                var t = document.createTextNode(respond[i].price);
+                                tagA.setAttribute('data-type', 'text');
+                                tagA.setAttribute('data-pk', respond[i].mid);
+                                tagA.setAttribute('data-name','price');
+                                tagA.setAttribute('data-url', 'includes/updateData.php');
+                                tagA.setAttribute('id', "price"+i);
+                                tagA.appendChild(t);
+                                mTd.appendChild(tagA);
+                                mRow.appendChild(mTd);
+
+//                               var mTd = document.createElement("td");
+//                               mTd.innerHTML = respond[i].picture;
+//                               mRow.appendChild(mTd);
+//                               
+//                               var mTd = document.createElement("td");
+//                               mTd.innerHTML = respond[i].coverpic;
+//                               mRow.appendChild(mTd);
+
+                                var mTd = document.createElement("td");
+                                var tagA = document.createElement("a");
+                                tagA.setAttribute('href', 'delete.php?mid=' + respond[i].mid);
+
+                                var mBtn = document.createElement("button");
+                                var t = document.createTextNode("Delete");
+                                mBtn.className = "btn btn-danger";
+                                mBtn.appendChild(t);
+
+                                tagA.appendChild(mBtn);
+
+                                mTd.appendChild(tagA);
+                                mRow.appendChild(mTd);
+                                document.getElementById("table-body").appendChild(mRow);
+
+                                $("#title"+i).editable({
+                                    success: function(respond,newValue){
+                                        console.log(respond);
+                                        console.log(newValue);
+                                    }
+                                });
+                                
+                                var cid=0;
+                                if(respond[i].category == 'Action'){
+                                    cid=1;
+                                }else if(respond[i].category == 'Drama'){
+                                    cid=2;
+                                }else{
+                                    cid=3;
+                                }
+                                console.log(cid);
+                                $("#cid"+i).editable({
+                                    value: cid,
+                                    source: [
+                                        {value: 1, text: 'Action'},
+                                        {value: 2, text: 'Drama'},
+                                        {value: 3, text: 'Animation'}
+                                    ]
+                                });
+                                
+                                $("#stock"+i).editable({
+                                    success: function(respond,newValue){
+                                        console.log(respond);
+                                        console.log(newValue);
+                                    }
+                                });
+                                $("#price"+i).editable({
+                                    success: function(respond,newValue){
+                                        console.log(respond);
+                                        console.log(newValue);
+                                    }
+                                });
+                            }
+
+                        });
+
+            });
+        </script>
+    </head>
+    <body>
+        <!-- Navigation Bar-->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand">MStore Admin Panel</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a>Home</a>
+                        </li>
+                        <li>
+                            <a>Log out</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!---->
+        <div class='container' style="margin-top:5%">
+            <div class='content'>
+                <div class='col-md-4'>
+                    <div class="panel panel-primary">
+                        <div class='panel-heading'>
+                            Add Movie
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Movie Title">
+                                </div>
+                                <div class="form-group">
+                                    <div class="dropdown">
+                                        <label for="dropdownMenu1">Select Movie Category </label>
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                            Select Category
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="stock">Unit-In-Stock</label>
+                                    <input type="text" class="form-control" id="stock" placeholder="Unit Availables">
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Price</label>
+                                    <input type="text" class="form-control" id="price" placeholder="Price">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="coverphoto">Upload Cover Photo</label>
+                                    <input type="file" id="coverphoto">
+                                    <p class="help-block">Image size should be 200x200 px</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="posterphoto">Upload Poster Photo</label>
+                                    <input type="file" id="posterphoto">
+                                    <p class="help-block">Image size should be 340x202 px</p>
+                                </div>
+
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form>
+                            <!--End of Form-->
+                        </div>
+                    </div>
+                    <!--End of col-md-4-->
+                </div>
+                <div class='col-md-8'>
+                    <div class="panel-default panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> List of Movie</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table" id="mTable" style="text-align: center;">
+                                <thead>
+                                <th class="text-center">Movie ID</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">Stock</th>
+                                <th class="text-center">Price ($)</th>
+                                <th></th>
+                                </thead>
+                                <tbody id="table-body">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </body>
+</html>
