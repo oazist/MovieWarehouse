@@ -20,7 +20,6 @@ $rowCat = mysqli_fetch_array($resultCat);
 /* Fetch other movies */
 $queryOther = "SELECT * FROM movie WHERE mid!='" . $mid . "' && cid=" . $rowMovie['cid'] . " LIMIT 5";
 $resultOther = mysqli_query($link, $queryOther);
-
 ?>
 <head>
     <title>Movie Warehouse</title>
@@ -28,10 +27,19 @@ $resultOther = mysqli_query($link, $queryOther);
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="web/css/font-awesome.css">
-    <script type="text/javascript" src="web/js/jquery-1.11.2.min.js"></script> 
+    <script type="text/javascript" src="web/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="web/js/auth.js"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
+    <script>
+        function ClientAPIHandler(videoId, videoTitle) {
+            document.getElementById("videoHeader").innerHTML = videoTitle;
+            document.getElementById("youtube").src = "http://www.youtube.com/embed/" + videoId + "?autoplay=1";
+        }
+    </script>
 
 </head>
 <body>
@@ -65,7 +73,7 @@ $resultOther = mysqli_query($link, $queryOther);
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="profile.php"><i class="fa fa-user"></i> <?php echo $_SESSION['username'];?></a></li>
+                                <li><a href="profile.php"><i class="fa fa-user"></i> <?php echo $_SESSION['username']; ?></a></li>
                                 <li><a href="viewcart.php"><i class="fa fa-shopping-cart"></i> Shopping Cart</a></li>
                                 <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
@@ -93,7 +101,7 @@ $resultOther = mysqli_query($link, $queryOther);
                 ?>
             </div>
         </div>
-        
+
         <div class="wrap">
             <div class="header_top">
                 <div class="logo">
@@ -132,11 +140,13 @@ $resultOther = mysqli_query($link, $queryOther);
 
                     });
                 </script>
+
                 <div class="clear"></div>
             </div>     				
         </div>
     </div>
     <div class="main">
+        <button id="login-link">login</button>
         <div class="wrap">
             <div class="content_top">
                 <div class="back-links">
@@ -152,7 +162,7 @@ $resultOther = mysqli_query($link, $queryOther);
                                 <img src="<?php echo $rowMovie['coverpic']; ?>" alt="" />
                             </div>
                             <div class="desc span_3_of_2">
-                                <h2 class="item_name"><?php echo $rowMovie['title']; ?></h2>
+                                <h2 class="item_name" id="title"><?php echo $rowMovie['title']; ?></h2>
                                 <p></p>					
                                 <div class="price">
                                     <p>Price: <span class="item_price">$<?php echo $rowMovie['price']; ?></span></p>
@@ -205,10 +215,11 @@ $resultOther = mysqli_query($link, $queryOther);
                     }
                     ?>
                 </div>
-                
+
                 <div class="cont-desc span_1_of_2">
                     <div id="container">
-                        <h1>Trailer</h1>
+                        <h1 id="videoHeader"></h1>
+                        <iframe width ="720" height="480" id="youtube">
                     </div>
                 </div>
             </div>
