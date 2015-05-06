@@ -1,7 +1,7 @@
 <?php
 
 	//include
-	require_once('includes/config.inc.php');
+	require_once('config.inc.php');
 
     
         $current = $_POST['userName'];
@@ -20,6 +20,6 @@
         $result = mysqli_query($link,$sql)or die("Data not found");
         mysqli_close($link);
                 
-        //header("location:login.php");
+        header("location:../login.php");
 	
 ?>
