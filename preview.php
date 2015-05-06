@@ -146,7 +146,7 @@ $resultOther = mysqli_query($link, $queryOther);
         </div>
     </div>
     <div class="main">
-        <button id="login-link">login</button>
+<!--        <button id="login-link">login</button>-->
         <div class="wrap">
             <div class="content_top">
                 <div class="back-links">

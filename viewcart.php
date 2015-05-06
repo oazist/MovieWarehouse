@@ -1,6 +1,8 @@
 <?php
 require_once('includes/config.inc.php');
 
+session_start();
+
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
 mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
 
@@ -121,7 +123,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <?php } else {
                         ?>
-
                         <div class="nav_list">
                             <ul>
                                 <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>

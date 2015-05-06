@@ -13,6 +13,7 @@ if (check_login_status() == false) {
     // Kill session variables 
     unset($_SESSION['logged_in']);
     unset($_SESSION['username']);
+    unset($_SESSION['uid']);
     // Destroy session 
     session_destroy();
 }
