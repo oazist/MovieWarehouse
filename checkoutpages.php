@@ -34,6 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
+    <link rel="stylesheet" href="web/css/button.css">
     
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.js"></script>
     <script type = "text/javascript" src = "web/js/jsPDF/jspdf.plugin.from_html.js"></script>
@@ -175,12 +176,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="clear"></div>
                 </div>
                 <div class="section group" id="print-pdf">
-                    <div id="user-info">
-                        <h2><?php echo $row['name']; ?></h2>
+                    <div id="user-info"><br>
+                        <label class="font12"><?php echo $row['name']; ?></Label><br>
                         <div class="available">
-                            <ul>
-                                <li><span>Email:</span> &nbsp; <?php echo $row['email']; ?></li>
-                                <li><span>Credit Card:</span>&nbsp; <?php echo $row['creditcard']; ?></li>
+                            <ul><br>
+                                <label class="font10"><span>Email:</span> &nbsp; <?php echo $row['email']; ?></label><br><br>
+                                <label class="font10"><span>Credit Card:</span>&nbsp; <?php echo $row['creditcard']; ?></label>
                             </ul>
                         </div>
                     </div>
@@ -189,7 +190,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <?php 
                         if(count($obj) > 0){
                         ?>
-                        <table id="cart-table">
+                        <table class="table2" id="cart-table">
+                            
                             <thead>
                                 <tr>
                                     <th><?php echo $obj[0]->Product;?></th>
@@ -219,12 +221,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <br/>
                     <div id="total">
-                        <div style="clear:left"></div>            
-                        SubTotal: <span class="simpleCart_total" id="subtotal"></span> <br />
+                        <div style="clear:left"></div></br></br>            
+                        <label class="font11">SubTotal: <span class="simpleCart_total" id="subtotal"></span></label> <br /><br /><br>
                     </div>
                 </div>
-                <a href="javascript:;" onclick="updateDatabase()">Confirm Purchase</a><br/>
+                
             </div> 
+            <br><br>
+                <a href="javascript:;" class="Button2" onclick="updateDatabase()">Confirm Purchase</a><br/>
+                </br></br> </br></br>
         </div>
     </div>
     <div class="footer">

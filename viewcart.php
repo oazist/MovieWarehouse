@@ -25,7 +25,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/simpleCart.js"></script>
     <script type="text/javascript" src="web/js/jquery.redirect.js"></script>
     <link href="web/css/table.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="web/css/button.css">
     <script type="text/javascript">
+    
+    
         simpleCart({
             // array representing the format and columns of the cart,
             // see the cart columns documentation
@@ -101,7 +104,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
            <div class="wrap">
                 <?php
                 if (isset($_SESSION['logged_in'])) {
-                    if ($_SESSION['uid'] == 1) {
+                    if ($_SESSION['uid'] == 1 ) {
                         ?>
                         <div class="nav_list">
                             <ul>
@@ -208,14 +211,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group" id="section-group">
                     <div class="simpleCart_items" id="cartItem">
                     </div>
+                     </br></br> </br>
                     <div style="clear:left"></div>            
-                    SubTotal: <span class="simpleCart_total" id="subtotal"></span> <br />
+                    <label class="font11">SubTotal : <span class="simpleCart_total" id="subtotal"></span></label> <br /><br>
 <!--                    <span id="couponcode"></span><br />
                     Final Total: <span class="simpleCart_finalTotal"></span><br />-->
+                    <br>
                 </div>
             </div>
-            <a href="javascript:;" onclick="extractData()">checkout</a><br/>
-            
+            </br></br>
+            <a href="javascript:;" class="Button2" onclick="extractData()">checkout</a><br/>
+             </br></br> </br></br>
         </div>
     </div>
     <div class="footer">

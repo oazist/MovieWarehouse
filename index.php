@@ -220,7 +220,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     if (isset($_SESSION['logged_in'])) {
                                         if ($_SESSION['uid'] == 1) {
                                             ?>
-                                            <h4><a href="preview.php?mid=<?php echo $row['mid']; ?>">Edit</a></h4><br>
+                                            <h4><a href="adminpanel.html?mid=<?php echo $row['mid']; ?>">Edit</a></h4><br>
                                             <h5><a href="delete.php?mid=<?php echo $row['mid']; ?>">Delete</a></h5>
                                         <?php } else {
                                             ?>

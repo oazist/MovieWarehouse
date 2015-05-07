@@ -34,6 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="web/js/move-top.js"></script>
     <script type="text/javascript" src="web/js/easing.js"></script>
     <link rel="stylesheet" href="web/css/font-awesome.css">
+    <link rel="stylesheet" href="web/css/button.css">
 </head>
 <body>
     <div class="header">
@@ -60,9 +61,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <a href="index.php"><img src="web/images/logo.png" alt="" /></a>
                 </div>
                 <div class="header_top_right">
-                    Cart: <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span> items) <br/>
-                    <a href="javascript:;" class="simpleCart_empty">Empty Cart</a> 
-                    <a href="viewcart.php" class="viewcart">Viewcart</a>
+                   <FONT COLOR='white' SIZE='4'>Cart :</FONT> <FONT COLOR='white' SIZE='4'><span class="simpleCart_total"></span></FONT> <FONT COLOR='#fc6910' SIZE='4'>(<span class="simpleCart_quantity"></span> items)</FONT> <br/>
+                    <a href="javascript:;" class="simpleCart_empty" ><FONT COLOR='#a8a8a8' SIZE='4'>Empty Cart</FONT></a> 
+                    <a href="viewcart.php" class="viewcart"><FONT COLOR='#fc6910' SIZE='4'>Viewcart</FONT></a>
                     <div class="clear"></div>
                 </div>
                 <script type="text/javascript">
@@ -103,24 +104,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h2><?php echo $rowUser['name']; ?></h2>
                     <div class="col-left-profile">
                         <div class="dl-horizontal">
-                            <dt>Email Address: </dt>
-                            <dd><?php echo $rowUser['email']; ?></dd>
-                            <dt>Credit Card: </dt>
-                            <dd><?php echo $rowUser['creditcard']; ?></dd>
-                            <dt>Account Type: </dt>
+                            <dt class="font14">Email Address: </dt>
+                            <dd class="font13"><?php echo $rowUser['email']; ?></dd>
+                            <dt class="font14">Credit Card: </dt>
+                            <dd class="font13"><?php echo $rowUser['creditcard']; ?></dd>
+                            <dt class="font14">Account Type: </dt>
                             <?php
                             if ($rowUser['account'] == 1) {
                                 ?>
-                                <dd>Normal Account</dd>
+                                <dd class="font13">Normal Account</dd>
                                 <?php
                             } else {
                                 ?>
-                                <dd>VIP Account</dd>
+                                <dd class="font14">VIP Account</dd>
                                 <?php
                             }
                             ?>
-                            <dt>External Links: </dt>
-                            <dd>
+                            <dt class="font14">External Links: </dt>
+                            <dd class="font13">
                                 <a href="www.facebook.com"><i class="fa fa-facebook-official fa-2x"></i>    </a>
                                 <a href="www.twitter.com"><i class="fa fa-twitter-square fa-2x" style="color:lightblue">    </i></a>
                                 <a href="www.plus.google.com"i class="fa fa-google-plus-square fa-2x" style="color:crimson">    </i></a>
