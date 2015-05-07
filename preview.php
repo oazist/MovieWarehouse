@@ -109,7 +109,7 @@ $resultOther = mysqli_query($link, $queryOther);
                 </div>
                 <div class="header_top_right">
                     <FONT COLOR='white' SIZE='4'>Cart :</FONT> <FONT COLOR='white' SIZE='4'><span class="simpleCart_total"></span></FONT> <FONT COLOR='#fc6910' SIZE='4'>(<span class="simpleCart_quantity"></span> items)</FONT> <br/>
-                    <a href="javascript:;" class="simpleCart_empty" ><FONT COLOR='#a8a8a8' SIZE='4'>Empty Cart</FONT></a> 
+                    <a href="javascript:;" onclick="revertStock()" class="simpleCart_empty" ><FONT COLOR='#a8a8a8' SIZE='4'>Empty Cart</FONT></a> 
                     <a href="viewcart.php" class="viewcart"><FONT COLOR='#fc6910' SIZE='4'>Viewcart</FONT></a>
                     <div class="clear"></div>
                 </div>
@@ -152,6 +152,19 @@ $resultOther = mysqli_query($link, $queryOther);
                         }
                     }
                 </script>
+                
+                <script>
+                    function reduceStock(){
+                        var stock = document.getElementById('stock').innerHTML;
+                        stock--;
+                        document.getElementById('stock').innerHTML = stock;
+                    }
+                    
+                    function revertStock(){
+                        var defaultStock = document.getElementById('stocklist').value;
+                        document.getElementById('stock').innerHTML = defaultStock;
+                    }
+                </script>
 
                 <div class="clear"></div>
             </div>     				
@@ -183,17 +196,17 @@ $resultOther = mysqli_query($link, $queryOther);
                                     <ul>
                                         <li><FONT COLOR='white' SIZE='3'>Movie ID :</FONT> &nbsp; <?php echo $rowMovie['mid']; ?></li>
                                         <li><FONT COLOR='white' SIZE='3'>Category :</FONT>&nbsp; <?php echo $rowCat['catalogue_name'] ?></li>
-                                        <li><FONT COLOR='white' SIZE='3'>Units in Stock :</FONT>&nbsp; <span id="stock" style="color:#707070;"><?php echo $rowMovie['stock']; ?></span></li>
+                                        <li id="stocklist" value="<?php echo $rowMovie['stock'];?>"><FONT COLOR='white' SIZE='3'>Units in Stock :</FONT>&nbsp; <span id="stock" style="color:#707070;"><?php echo $rowMovie['stock']; ?></span></li>
                                     </ul>
                                 </div>
                                 <div class="share-desc">
-                                    <div class="share">
+<!--                                    <div class="share">
                                        <FONT COLOR='white' SIZE='3'>Number of units : </FONT><input class="item_quantity" id="unit" class="text_box" type="number" min="0" onchange="compareStock(this.value)">
-                                    </div>
+                                    </div>-->
     <!--                                <div class="button"><span><a href="javascript:;" onclick="simpleCart.add('name=<?php echo $rowMovie['title']; ?>',
                                                     'price=<?php echo $rowMovie['price']; ?>',
                                                     'quantity='+document.getElementById('unit').value)">Add to Cart</a></span></div>					-->
-                                    <div class="button" id="button"><span><a href="javascript:;" class="item_add">Add to Cart</a></span></div>
+                                    <div class="button" id="button"><span><a href="javascript:;" onclick="reduceStock()" class="item_add">Add to Cart</a></span></div>
                                     <br/>
                                     <p style="color:red;visibility: hidden;" id="warning">The input is exceeding current stock</p>
                                     <div class="clear"></div>
@@ -302,6 +315,7 @@ $resultOther = mysqli_query($link, $queryOther);
 
         });
     </script>
+
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 </body>
 </html>

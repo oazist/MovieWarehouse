@@ -39,7 +39,7 @@ while ($rowMovie = mysqli_fetch_array($resultMovie)) {
      {
         if ($_SESSION['uid'] == 1) 
             {
-                $response .= "<h4><a href='preview.php?mid=".$rowMovie['mid']."'> Edit</a></h4><br>";
+                $response .= "<h4><a href='adminpanel.php'> Edit</a></h4><br>";
                 $response .= "<h4><a href='delete.php?mid=".$rowMovie['mid']."'>Delete</a></h4>";
             }
         else 

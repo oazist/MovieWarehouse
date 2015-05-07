@@ -52,11 +52,31 @@ if (!isset($_SESSION['logged_in'])) {
     $uid = $_SESSION['uid'];
     $date = date_create()->format('Y-m-d H:i:s');
     
-    //Create Transaction History
+    //Create Transaction
     $create_transaction = "INSERT INTO transaction (`uid`, `amount`, `date`, `creditcard`) "."VALUES (".$uid.",'".$subtotal."','".$date."','".$credit."'".");";
     mysqli_query($link, $create_transaction) or die("Can't add transaction");
-   
     
+    //Get newly created transaction ID
+    $getTID = "SELECT tid FROM transaction WHERE date='".$date."'";
+    $resultTID = mysqli_query($link, $getTID) or die("Can't find transaction ID");
+    $rowTID = mysqli_fetch_array($resultTID);
+    $tid = $rowTID['tid'];
+    
+    //Create Purchasing History
+    for($i=0;$i<$obj_length;$i++){
+        $title = $obj[$i]->Product;
+        $amount = $obj[$i]->Quantity;
+        
+        //Get Movie ID
+        $getMID = "SELECT mid FROM movie WHERE title='".$title."'";
+        $resultMID = mysqli_query($link, $getMID) or die("Can't find movie ID");
+        $rowMID = mysqli_fetch_array($resultMID);
+        $mid = $rowMID['mid'];
+        
+        $create_history = "INSERT INTO history (`tid`, `uid`, `mid`, `title`, `amount`)"."VALUES (".$tid.",".$uid.",'".$mid."','".$title."','".$amount."');";
+        mysqli_query($link,$create_history) or die("Can't create history");
+        
+    }
     
     mysqli_close($link);
     redirect("../profile.php");
