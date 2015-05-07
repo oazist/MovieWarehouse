@@ -73,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             doc.setFontSize(14);
             doc.text(100, 55, 'Name:  ' + customer);
             doc.text(100, 65, 'Email: ' + email);
-            doc.text(100, 75, 'Credit Card: '+credit);
+            doc.text(100, 75, 'Credit Card: ' + credit);
             doc.setFontSize(12);
             doc.text(30, 90, "Date Issue: " + date + "              " + "SubTotal: " + total);
 
@@ -131,10 +131,61 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 tableArray.push(objAdd);
             }
 
-            var sendData = JSON.stringify(tableArray);
-            printPDF();
-            simpleCart.empty();
-            $.redirect('includes/checkout.inc.php', {'updateObject': sendData, 'subtotal': mSubtotal});
+            var checkObject = JSON.stringify(tableArray);
+
+            //Before checkout, we have to make sure that the stock of every selected items is not exceeding by the input
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var result = xmlhttp.responseText;
+                    
+                    if (result == 'success') {
+                        var sendData = JSON.stringify(tableArray);
+                        printPDF();
+                        simpleCart.empty();
+                        $.redirect('includes/checkout.inc.php', {'updateObject': sendData, 'subtotal': mSubtotal});
+                    } else {
+                        alert("Oops! There is an error occur for your transaction");
+                        /*Show movie that the stock is not enough*/
+                        var result = JSON.parse(result);
+                        //console.log(result);
+                        document.getElementById("errorHandler").style.visibility = "visible";
+                        var tablebody = document.getElementById("table-error-body");
+                        //Clear the element in listGroup
+                        while (tablebody.firstChild)
+                            tablebody.removeChild(tablebody.firstChild);
+
+                        for (i = 0; i < result.length; i++) {
+                            var mRow = document.createElement("tr");
+
+                            var mTd = document.createElement("td");
+                            mTd.innerHTML = result[i].title;
+                            mRow.appendChild(mTd);
+
+                            var mTd = document.createElement("td");
+                            mTd.innerHTML = result[i].stock;
+                            mTd.style.color = "green";
+                            mRow.appendChild(mTd);
+
+                            var mTd = document.createElement("td");
+                            mTd.innerHTML = result[i].order;
+                            mTd.style.color = "red";
+                            mRow.appendChild(mTd);
+
+                            tablebody.appendChild(mRow);
+                        }
+                    }
+
+                }
+            }
+
+            xmlhttp.open("GET", "includes/checkStock.php?obj=" + checkObject, true);
+            xmlhttp.send();
         }
     </script>
 </head>
@@ -213,10 +264,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="available">
                             <ul><br>
                                 <label class="font10"><span>Email:</span> &nbsp<span id="email"><?php echo $row['email']; ?></span></label><br><br>
-                                <label class="font10"><span>Credit Card:</span>&nbsp;<span id="credit-card"><?php echo $row['creditcard']; ?></span></label>
+                                <label class="font10"><span>Credit Card:</span>&nbsp;<span id="credit-card"><?php echo $row['creditcard']; ?></span></label><br><br>
+
                             </ul>
                         </div>
                     </div>
+                    
                     <br/>
                     <div id="cart-item">
                         <?php
@@ -256,12 +309,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div style="clear:left"></div></br></br>            
                         <label class="font11">SubTotal: <span class="simpleCart_total" id="subtotal"></span></label> <br /><br /><br>
                     </div>
+                    <div id='errorHandler' style="padding: 5%;visibility:hidden;">
+                        <label style="color:red;">Sorry, We can't process your request due to the amount of some selected items may exceeding our stock. Please see the list for more detail. </label>
+                        <table class="table2" id="table-error">
+                            <thead>
+                                <tr>
+                                    <th>Movie</th>
+                                    <th>Available</th>
+                                    <th>Order</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-error-body">
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div> 
             <br><br>
             <a href="javascript:;" class="Button2" onclick="updateDatabase()">Confirm Purchase</a><br/>
-            </br></br> </br></br>
+            <br><br> <br><br>
         </div>
     </div>
     <div class="footer">

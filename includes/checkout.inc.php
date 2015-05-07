@@ -8,7 +8,6 @@
  * 4. update the database
  * 5. redirect to my account page when finished
  */
-
 $obj = json_decode($_POST['updateObject']);
 require_once('config.inc.php');
 require_once('functions.inc.php');
@@ -75,7 +74,7 @@ if (!isset($_SESSION['logged_in'])) {
         
         $create_history = "INSERT INTO history (`tid`, `uid`, `mid`, `title`, `amount`)"."VALUES (".$tid.",".$uid.",'".$mid."','".$title."','".$amount."');";
         mysqli_query($link,$create_history) or die("Can't create history");
-        
+       
     }
     
     mysqli_close($link);
