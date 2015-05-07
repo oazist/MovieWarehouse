@@ -15,7 +15,7 @@
 	mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
 	
 	$sql = "INSERT INTO `user` (`name`, `username`, `password`, `email`, `creditcard`, `accountType`) "
-               ."VALUES ( '".$current."','".$current2."','".$current3."','".$current4."','".$current5."', '1');";
+               ."VALUES ( '".$current."','".$current2."','".md5[$current3]."','".$current4."','".$current5."', '1');";
         
         $result = mysqli_query($link,$sql)or die("Data not found");
         mysqli_close($link);

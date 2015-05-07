@@ -52,8 +52,7 @@ and open the template in the editor.
                                 var tagA = document.createElement("a");
                                 var t = document.createTextNode(respond[i].title);
                                 tagA.setAttribute('data-type', 'text');
-                                tagA.setAttribute('data-minlength', '1');
-                                tagA.setAttribute('data-pattern', "[a-zA-Z0-9]+");
+                                tagA.setAttribute('data-validate','');
                                 tagA.setAttribute('data-pk', respond[i].mid);
                                 tagA.setAttribute('data-url', 'includes/updateData.php');
                                 tagA.setAttribute('data-name', 'title');
@@ -156,23 +155,33 @@ and open the template in the editor.
                     
                     /*User must enter all required field otherwise the record won't be added to database*/
                     var checkInput = 0;
-                    var mid = document.getElementById("mid").value;
-                    var title = document.getElementById("title").value;
-                    var stock = document.getElementById("stock").value;
-                    var price = document.getElementById("price").value;     
-                    if(mid==""){
+                    var mid = document.getElementById("mid");
+                    var title = document.getElementById("title");
+                    var stock = document.getElementById("stock");
+                    var price = document.getElementById("price");
+                    var movieID = mid.value;
+                    var re = new RegExp("^([a-z]{2}[0-9]{4})$");
+                    
+                    console.log(re.test(movieID));
+                    
+                    if(mid.value=="" || (!re.test(movieID))){
+                        alert("Movie ID is invalid");
+                        mid.required=true;
                         checkInput++;
                     }
                     
-                    if(title==""){
+                    if(title.value==""){
+                        title.required=true;
                         checkInput++;
                     }
                     
-                    if(stock==""){
+                    if(stock.value=="" || stock.value<0){
+                        stock.required=true;
                         checkInput++;
                     }
                     
-                    if(price==""){
+                    if(price.value=="" || price.value<0){
+                        price.required=true;
                         checkInput++;
                     }
                     
@@ -356,13 +365,13 @@ and open the template in the editor.
                             <form id="data" enctype="multipart/form-data" method="post" data-toggle="validator">
                                 <div class="form-group">
                                     <label for="mid" class="control-label">Movie ID</label>
-                                    <input type="text" class="form-control" id="mid" name="mid" placeholder="i.e. acXXXX, drXXXX, anXXXX" required>
+                                    <input type="text" class="form-control" id="mid" name="mid" pattern="[a-z]{2}[0-9]{4}" placeholder="i.e. acXXXX, drXXXX, anXXXX">
 <!--                                    <p class="help-block">first 2 characters of movie's category follow by 4-digit-number i.e. acXXXX, drXXXX, anXXXX</p>-->
                                 </div>
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label for="title" class="control-label">Title</label>
-                                        <input type="text" class="form-control" id="title" name="title" minlenght="1" placeholder="Enter Movie Title" required>
+                                        <input type="text" class="form-control" id="title" name="title" minlenght="1" placeholder="Enter Movie Title" >
                                     </div>
                                     <div class="form-group">
 
@@ -375,13 +384,13 @@ and open the template in the editor.
                                     </div>
                                     <div class="form-group">
                                         <label for="stock" class="control-label">Unit-In-Stock</label>
-                                        <input type="number" class="form-control" id="stock" name="stock" min="0" placeholder="Unit Availables" required>
+                                        <input type="number" class="form-control" id="stock" name="stock" min="0" placeholder="Unit Availables" >
                                     </div>
                                     <div class="form-group">
                                         <label for="price" class="control-label">Price</label>
                                         <div class="input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="number" class="form-control" id="price" name="price" min="0" step="0.01" placeholder="Price" required>
+                                            <input type="number" class="form-control" id="price" name="price" min="0" step="0.01" placeholder="Price" >
                                         </div>
                                     </div>
 
@@ -389,7 +398,6 @@ and open the template in the editor.
                                         <label for="coverphoto">Upload Cover Photo</label>
                                         <input type="file" name="coverfile" id="coverphoto">
                                         <p class="help-block">Image size should be 200x200 px</p>
-
                                     </div>
 
                                     <div class="form-group">

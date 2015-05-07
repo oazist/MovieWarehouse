@@ -44,7 +44,7 @@ while ($rowMovie = mysqli_fetch_array($resultMovie)) {
             }
         else 
             {
-                $response .= "<h4><a href='preview.php?mid='".$rowMovie['mid']."'>Preview</a></h4>";
+                $response .= "<h4><a href='preview.php?mid=".$rowMovie['mid']."'>Preview</a></h4>";
             }
      }
     else 
