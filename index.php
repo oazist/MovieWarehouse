@@ -73,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="adminpanel.html"><i class="fa fa-user"></i> Admin Panel</a></li>
+                                <li><a href="adminpanel.php"><i class="fa fa-user"></i> Admin Panel</a></li>
                                 <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>
@@ -220,7 +220,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     if (isset($_SESSION['logged_in'])) {
                                         if ($_SESSION['uid'] == 1) {
                                             ?>
-                                            <h4><a href="adminpanel.html?mid=<?php echo $row['mid']; ?>">Edit</a></h4><br>
+                                            <h4><a href="adminpanel.php">Edit</a></h4><br>
                                             <h5><a href="delete.php?mid=<?php echo $row['mid']; ?>">Delete</a></h5>
                                         <?php } else {
                                             ?>

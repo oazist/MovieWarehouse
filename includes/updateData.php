@@ -10,6 +10,6 @@ $val = $_POST['value'];
 
 $link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD) or die("Could not connect to host");
 mysqli_select_db($link, DB_DATABASE) or die("Could not find database");
-$query = "UPDATE movie SET ".$column."='".$val."' WHERE mid='".$mid."' ";
+$query = "UPDATE movie SET " . $column . "='" . $val . "' WHERE mid='" . $mid . "' ";
 mysqli_query($link, $query) or die("Can't update data");
 

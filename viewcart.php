@@ -115,7 +115,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div class="account_desc">
                             <ul>
-                                <li><a href="adminpanel.html"><i class="fa fa-user"></i> Admin Panel</a></li>
+                                <li><a href="adminpanel.php"><i class="fa fa-user"></i> Admin Panel</a></li>
                                 <li><a href="includes/logout.inc.php"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             </ul>
                         </div>

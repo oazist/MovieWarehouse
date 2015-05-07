@@ -113,11 +113,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form method="post" action="includes/login.inc.php">
                                 <div>
                                     <span><label>ID</label></span>
-                                    <span><input  placeholder="Username" name="username" type="text" class="textbox"  autofocus ></span>
+                                    <span><input  placeholder="Username" name="username" type="text" class="textbox" pattern="[a-zA-Z0-9]+" autofocus ></span>
                                 </div>
                                 <div>
                                     <span><label>PASSWORD</label></span>
-                                    <span><input  placeholder="Password" name="password" type="password" class="textbox"></span>
+                                    <span><input  placeholder="Password" name="password" type="password" pattern=".{4,}" title="Require at least 4 characters" class="textbox"></span>
                                 </div>
 
                                 <div>

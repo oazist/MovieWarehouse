@@ -140,6 +140,18 @@ $resultOther = mysqli_query($link, $queryOther);
 
                     });
                 </script>
+                <script>
+                    function compareStock(input){
+                        var stock = document.getElementById('stock').innerHTML;
+                        if(input > stock){
+                            document.getElementById('warning').style.visibility = "visible";
+                            document.getElementById('button').style.visibility = "hidden";
+                        }else{
+                            document.getElementById('warning').style.visibility = "hidden";
+                            document.getElementById('button').style.visibility = "visible";
+                        }
+                    }
+                </script>
 
                 <div class="clear"></div>
             </div>     				
@@ -171,20 +183,21 @@ $resultOther = mysqli_query($link, $queryOther);
                                     <ul>
                                         <li><FONT COLOR='white' SIZE='3'>Movie ID :</FONT> &nbsp; <?php echo $rowMovie['mid']; ?></li>
                                         <li><FONT COLOR='white' SIZE='3'>Category :</FONT>&nbsp; <?php echo $rowCat['catalogue_name'] ?></li>
-                                        <li><FONT COLOR='white' SIZE='3'>Units in Stock :</FONT>&nbsp; <?php echo $rowMovie['stock']; ?></li>
+                                        <li><FONT COLOR='white' SIZE='3'>Units in Stock :</FONT>&nbsp; <span id="stock" style="color:#707070;"><?php echo $rowMovie['stock']; ?></span></li>
                                     </ul>
                                 </div>
                                 <div class="share-desc">
                                     <div class="share">
-                                       <FONT COLOR='white' SIZE='3'>Number of units: </FONT><input class="item_quantity" id="unit" class="text_box" type="text">				
+                                       <FONT COLOR='white' SIZE='3'>Number of units : </FONT><input class="item_quantity" id="unit" class="text_box" type="number" min="0" onchange="compareStock(this.value)">
                                     </div>
     <!--                                <div class="button"><span><a href="javascript:;" onclick="simpleCart.add('name=<?php echo $rowMovie['title']; ?>',
                                                     'price=<?php echo $rowMovie['price']; ?>',
                                                     'quantity='+document.getElementById('unit').value)">Add to Cart</a></span></div>					-->
-                                    <div class="button"><span><a href="javascript:;" class="item_add" >Add to Cart</a></span></div>	
+                                    <div class="button" id="button"><span><a href="javascript:;" class="item_add">Add to Cart</a></span></div>
+                                    <br/>
+                                    <p style="color:red;visibility: hidden;" id="warning">The input is exceeding current stock</p>
                                     <div class="clear"></div>
                                 </div>
-
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -206,7 +219,7 @@ $resultOther = mysqli_query($link, $queryOther);
                             </div>
                             <div class="movie_desc">
                                 <h3><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>"><?php echo $rowOther['title']; ?></a></h3><br>
-                                <FONT COLOR='white' SIZE='3'>&nbsp; Prices $<?php echo $rowOther['price']; ?></FONT>
+                                <FONT COLOR='white' SIZE='3'>&nbsp;$<?php echo $rowOther['price']; ?></FONT>
                                 <div class="add-cart">
                                 <h6><a href="preview.php?mid=<?php echo $rowOther['mid']; ?>">Preview</a></h6>
                                 </div>
